@@ -1,0 +1,8 @@
+{
+  "name": "Satspass",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "2794420b"
+}

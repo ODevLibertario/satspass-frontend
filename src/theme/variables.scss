@@ -1,0 +1,49 @@
+// For information on how to create your own theme, please see:
+// http://ionicframework.com/docs/theming/
+// src/theme/variables.scss
+
+// Define your color palette
+:root {
+  --ion-color-primary: #ff9200;
+  --ion-color-secondary: #3dc2ff;
+  --ion-color-tertiary: #5260ff;
+  --ion-color-success: #2dd36f;
+  --ion-color-warning: #ffc409;
+  --ion-color-danger: #eb445a;
+  --ion-color-dark: #222428;
+  --ion-color-medium: #92949c;
+  --ion-color-light: #f4f5f8;
+
+  // Custom colors
+  --ion-color-custom: #ff6347; // Example custom color
+
+  // Text color
+  --ion-text-color: var(--ion-color-dark);
+}
+
+// Optional: Define color shades
+.ion-color-primary {
+  --ion-color-base: var(--ion-color-primary);
+  --ion-color-base-rgb: 56, 128, 255;
+  --ion-color-contrast: #ffffff;
+  --ion-color-contrast-rgb: 255, 255, 255;
+  --ion-color-shade: #3171e0;
+  --ion-color-tint: #4c8dff;
+}
+
+.ion-color-secondary {
+  --ion-color-base: var(--ion-color-secondary);
+  --ion-color-base-rgb: 61, 194, 255;
+  --ion-color-contrast: #ffffff;
+  --ion-color-contrast-rgb: 255, 255, 255;
+  --ion-color-shade: #36b1e8;
+  --ion-color-tint: #50c8ff;
+}
+
+// Add custom color classes as needed
+.ion-color-custom {
+  --ion-color-base: var(--ion-color-custom);
+  --ion-color-contrast: #ffffff;
+  --ion-color-shade: #e45341;
+  --ion-color-tint: #ff7b67;
+}
