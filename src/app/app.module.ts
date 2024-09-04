@@ -11,12 +11,19 @@ import {LandingPage} from "./pages/landing/landing.page";
 import {SatspassApiService} from "../service/SatspassApiService";
 import {HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi} from "@angular/common/http";
 import {HttpAuthInterceptorService} from "../interceptors/http.auth.interceptor";
-import {AuthModule} from "./pages/auth/auth.module";
 import {ModalService} from "../service/ModalService";
+import {IonicStorageModule} from "@ionic/storage-angular";
 
 @NgModule({
   declarations: [AppComponent, LandingPage],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule, ReactiveFormsModule, AuthModule],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    IonicStorageModule.forRoot()
+  ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     SatspassApiService,

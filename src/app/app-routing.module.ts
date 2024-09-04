@@ -13,6 +13,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule)
   },
   {
+    path: 'customer',
+    loadChildren: () => import('./pages/customer/customer.module').then(m => m.CustomerModule)
+  },
+  {
     path: '',
     component: LandingPage
   }
