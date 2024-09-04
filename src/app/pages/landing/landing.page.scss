@@ -1,0 +1,42 @@
+ion-content {
+  display: flex;
+  justify-content: center; /* Centers the text horizontally */
+  align-items: center; /* Centers the text vertically */
+  height: 100%; /* Ensures the content takes up the full height */
+  text-align: center; /* Centers text within the ion-text element */
+  --padding-top: 10%;
+  --background: url('/assets/x-landing-bg.jpeg') no-repeat center center / cover; /* Optional: Set a background image */
+}
+
+.logo-text {
+  font-size: 60px;
+  font-weight: bold; /* Makes the text bold */
+  color: var(--ion-color-primary);
+  text-transform: uppercase; /* Makes the text uppercase */
+  letter-spacing: 2px; /* Adds some space between letters */
+  text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8); /* Adds a shadow to the text for a logo-like effect */
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 25%;
+  flex-direction: column; /* Stacks the buttons vertically */
+  gap: 8px; /* Adds space between the buttons */
+  width: 100%; /* Ensures buttons are not too wide */
+}
+
+.custom-button {
+  --background: #3880ff; /* Customize the button background color */
+  --color: #ffffff; /* Customize the button text color */
+  --border-radius: 15px; /* Customize the button's border radius */
+  font-size: 18px; /* Customize the button text size */
+  padding: 6px 12px; /* Adjusts the button padding */
+  width: 70%;
+  max-width: 450px;
+}
+
+.primary-color {
+  --background: var(--ion-color-primary);
+}

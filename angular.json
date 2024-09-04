@@ -56,6 +56,14 @@
               ],
               "outputHashing": "all"
             },
+            "local": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.local.ts"
+                }
+              ]
+            },
             "development": {
               "buildOptimizer": false,
               "optimization": false,
@@ -81,6 +89,9 @@
             },
             "ci": {
               "progress": false
+            },
+            "local": {
+              "buildTarget": "app:build:local"
             }
           },
           "defaultConfiguration": "development"

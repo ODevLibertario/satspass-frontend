@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>CONFIRMAR E-MAIL</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="verifyEmailForm" (ngSubmit)="onSend()">
+    <ion-item>
+      <ion-label position="floating">Código de verificação</ion-label>
+      <ion-input type="text" formControlName="code" required></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" type="submit" [disabled]="verifyEmailForm.invalid">ENVIAR</ion-button>
+  </form>
+</ion-content>

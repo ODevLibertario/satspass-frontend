@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import {SignUpPage} from "./sign-up/sign-up.page";
+import {SignUpPage} from "./pages/auth/sign-up/sign-up.page";
+import {LandingPage} from "./pages/landing/landing.page";
 
 const routes: Routes = [
   {
@@ -8,8 +9,12 @@ const routes: Routes = [
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
-    path: 'sign-up',
-    component: SignUpPage
+    path: 'auth',
+    loadChildren: () => import('./pages/auth/auth.module').then(m => m.AuthModule)
+  },
+  {
+    path: '',
+    component: LandingPage
   }
 ];
 @NgModule({

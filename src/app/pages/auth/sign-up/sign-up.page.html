@@ -10,7 +10,7 @@
       <ion-label position="floating">Email</ion-label>
       <ion-input type="email" formControlName="email" required></ion-input>
     </ion-item>
-    <ion-text color="danger" *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.invalid">
+    <ion-text color="danger" *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.invalid" class="input-error">
       <small *ngIf="signupForm.get('email')?.errors?['required']: false">Email é obrigatório.</small> <br>
       <small *ngIf="signupForm.get('email')?.errors?['email']: false">Entre um email válido.</small>
     </ion-text>
@@ -24,11 +24,12 @@
       <ion-label position="floating">Senha</ion-label>
       <ion-input type="password" formControlName="password" required></ion-input>
     </ion-item>
-    <ion-text color="danger" *ngIf="signupForm.get('password')?.touched && signupForm.get('password')?.invalid">
+    <ion-text color="danger" *ngIf="signupForm.get('password')?.touched && signupForm.get('password')?.invalid" class="input-error">
       <small *ngIf="signupForm.get('password')?.errors?['required']: false">Senha é obrigatória.</small> <br>
       <small *ngIf="signupForm.get('password')?.errors?['minlength']: false">A senha deve ter pelo menos 6 caracteres.</small>
     </ion-text>
 
-    <ion-button expand="block" type="submit" [disabled]="signupForm.invalid">Sign Up</ion-button>
+    <ion-button expand="block" type="submit" [disabled]="signupForm.invalid" (click)="onSignup()">CRIAR CONTA</ion-button>
+    <ion-button expand="block" color="secondary" (click)="navigateToLanding()">Voltar</ion-button>
   </form>
 </ion-content>
