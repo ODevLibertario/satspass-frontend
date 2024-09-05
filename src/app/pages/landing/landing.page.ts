@@ -11,11 +11,11 @@ export class LandingPage {
   constructor(private router: Router) { }
 
   navigateToSignUp() {
-    this.router.navigate(['/sign-up']);
+    this.router.navigate(['/auth/sign-up']);
   }
 
   navigateToSignIn() {
-    this.router.navigate(['/sign-in']);
+    this.router.navigate(['/auth/sign-in']);
   }
 
 }

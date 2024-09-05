@@ -30,7 +30,7 @@ export class HttpAuthInterceptorService implements HttpInterceptor {
             'Content-Type': 'application/json',
           } as any
 
-          if(token) {
+          if(token && !req.url.includes('auth')) {
            headers["Authorization"] = 'Bearer '+ token;
           }
 

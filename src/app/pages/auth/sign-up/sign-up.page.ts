@@ -28,18 +28,20 @@ export class SignUpPage {
   }
 
   async onSignup() {
-    const loading = await this.modalService.loading()
-    const {email, username, password} = this.signupForm.value;
-    this.satspassApiService.signUp(new SignUpRequest(
-      email, username, password
-    )).then(r => {
-      this.signupForm.reset();
-      this.router.navigate(['/verify-email'], {queryParams: {email}});
-      this.modalService.toast( 'Bem vindo, um email com o código confirmação foi enviado')
-    })
-      .catch(err => console.log(err))
-      .finally(() => loading.dismiss());
+    await this.modalService.wrapInLoading(() => {
+        return this.callSignUp();
+      },
+      'Bem vindo, um email com o código confirmação foi enviado',
+      'Falha ao cadastrar, tente novamente!')
+  }
 
+  private async callSignUp() {
+    const {email, username, password} = this.signupForm.value;
+    await this.satspassApiService.signUp(new SignUpRequest(
+      email, username, password
+    ))
+    this.signupForm.reset();
+    await this.router.navigate(['/verify-email'], {queryParams: {email}});
   }
 
   navigateToLanding() {

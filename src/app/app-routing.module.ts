@@ -17,6 +17,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/customer/customer.module').then(m => m.CustomerModule)
   },
   {
+    path: 'manager',
+    loadChildren: () => import('./pages/manager/manager.module').then(m => m.ManagerModule)
+  },
+  {
     path: '',
     component: LandingPage
   }

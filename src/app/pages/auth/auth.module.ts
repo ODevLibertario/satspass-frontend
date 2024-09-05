@@ -6,6 +6,7 @@ import {CommonModule} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {IonicModule} from "@ionic/angular";
 import {SignInPage} from "./sign-in/sign-in.page";
+import {ResetPasswordPage} from "./reset-password/reset-password.page";
 
 const routes: Routes = [
   {
@@ -20,6 +21,10 @@ const routes: Routes = [
     path: 'sign-in',
     component: SignInPage
   },
+  {
+    path: 'reset-password',
+    component: ResetPasswordPage
+  },
 ];
 
 @NgModule({
@@ -31,6 +36,6 @@ const routes: Routes = [
     FormsModule, ReactiveFormsModule
   ],
   exports: [RouterModule],
-  declarations: [SignUpPage, VerifyEmailPage, SignInPage]
+  declarations: [SignUpPage, VerifyEmailPage, SignInPage, ResetPasswordPage]
 })
 export class AuthModule {}

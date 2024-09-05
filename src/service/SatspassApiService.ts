@@ -27,4 +27,9 @@ export class SatspassApiService {
     const url = `${this.apiUrl}/auth/sign-in`;
     return firstValueFrom(this.http.post(url, {email, password})) as Promise<{ token: string, role: string }>;
   }
+
+  resetPassword(email: string) {
+    const url = `${this.apiUrl}/auth/reset-password`;
+    return firstValueFrom(this.http.post(url, {email}));
+  }
 }

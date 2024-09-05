@@ -28,20 +28,22 @@ export class SignInPage {
   }
 
   async onSignIn() {
-    const loading = await this.modalService.loading()
+    await this.modalService.wrapInLoading(() => {
+         return this.callSignIn();
+      },
+      undefined,
+      'Falha ao realizar login, verifique seu email e senha'
+    )
+  }
+
+  private async callSignIn() {
     const {email, password} = this.signInForm.value;
-    try {
-      const {token, role} = await this.satspassApiService.signIn(email, password)
-      await this.storage.set('token', token)
-      await this.storage.set('role', role)
-      this.signInForm.reset()
-      await this.router.navigate(['/' + this.toPrettyRole(role) + '/home']);
-    }catch (err) {
-      console.log(err)
-      await this.modalService.toast('Falha ao realizar login, verifique seu email e senha', 'danger')
-    } finally {
-      await loading.dismiss()
-    }
+    const {token, role} = await this.satspassApiService.signIn(email, password)
+    this.signInForm.reset()
+    await this.storage.set('token', token)
+    await this.storage.set('role', role)
+    console.log(role)
+    await this.router.navigate(['/' + this.toPrettyRole(role) + '/home'])
   }
 
   private toPrettyRole(role: string) {

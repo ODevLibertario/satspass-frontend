@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {SatspassApiService} from "../../../../service/SatspassApiService";
 import {ModalService} from "../../../../service/ModalService";
 
+//TODO Adicionar botão para reenviar o código
 @Component({
   selector: 'app-verify-email',
   templateUrl: './verify-email.page.html',
@@ -24,18 +25,16 @@ export class VerifyEmailPage {
   }
 
   async onSend() {
-    const loading = await this.modalService.loading()
-    this.satspassApiService.verifyEmail(
-      this.route.snapshot.queryParamMap.get('email')!,
-      this.verifyEmailForm.value.code
-    ).then(r => {
-      this.modalService.toast('Email confirmado, realize o login.')
-      this.router.navigate(['/auth/sign-in']);
-      }
-    ).catch(err => {
-      //TODO Adicionar botão para reenviar o código
-      this.modalService.toast( 'Falha ao confirmar email, verifique o código.', 'danger')
-      console.log(err)
-    }).finally(() => loading.dismiss());
+    await this.modalService.wrapInLoading(() => {
+        return Promise.all([
+          this.satspassApiService.verifyEmail(
+            this.route.snapshot.queryParamMap.get('email')!,
+            this.verifyEmailForm.value.code
+          ),
+          this.router.navigate(['/auth/sign-in'])
+        ])
+
+      }, 'Email confirmado, realize o login.',
+      'Falha ao confirmar email, verifique o código.')
   }
 }
