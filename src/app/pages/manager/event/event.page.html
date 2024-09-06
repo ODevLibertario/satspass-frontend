@@ -1,0 +1,52 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Evento</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="floating">Nome do Evento</ion-label>
+      <ion-input type="email" formControlName="name" required></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="eventForm.get('name')?.touched && eventForm.get('name')?.invalid" class="input-error">
+      <small *ngIf="eventForm.get('name')?.errors?['required']: false">Nome do Evento é obrigatório.</small>
+    </ion-text>
+    <ion-item style="align-items: center">
+      <ion-label position="stacked" style="margin-bottom: 2%;">Data de início</ion-label>
+      <div style="display: flex; flex-direction: row;">
+        <ion-picker>
+          <ion-picker-column value="">
+            <ion-picker-column-option value="" disabled="true">Dia</ion-picker-column-option>
+            <ion-picker-column-option value="javascript">01</ion-picker-column-option>
+            <ion-picker-column-option value="typescript">02</ion-picker-column-option>
+            <ion-picker-column-option value="rust">03</ion-picker-column-option>
+            <ion-picker-column-option value="c#">04</ion-picker-column-option>
+          </ion-picker-column>
+        </ion-picker>
+        <ion-picker >
+          <ion-picker-column value="">
+            <ion-picker-column-option value="" disabled="true">Mês</ion-picker-column-option>
+            <ion-picker-column-option value="javascript">01</ion-picker-column-option>
+            <ion-picker-column-option value="typescript">02</ion-picker-column-option>
+            <ion-picker-column-option value="rust">03</ion-picker-column-option>
+            <ion-picker-column-option value="c#">04</ion-picker-column-option>
+          </ion-picker-column>
+        </ion-picker>
+        <ion-picker >
+          <ion-picker-column value="">
+            <ion-picker-column-option value="" disabled="true">Ano</ion-picker-column-option>
+            <ion-picker-column-option value="javascript">2024</ion-picker-column-option>
+            <ion-picker-column-option value="typescript">2025</ion-picker-column-option>
+            <ion-picker-column-option value="rust">2026</ion-picker-column-option>
+          </ion-picker-column>
+        </ion-picker>
+      </div>
+    </ion-item>
+
+    <ion-button expand="block" type="submit" [disabled]="eventForm.invalid">CRIAR EVENTO</ion-button>
+    <ion-button expand="block" color="secondary" (click)="navigateToHome()">Voltar</ion-button>
+
+  </form>
+</ion-content>
