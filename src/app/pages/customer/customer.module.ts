@@ -4,11 +4,16 @@ import {CommonModule} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {IonicModule} from "@ionic/angular";
 import {HomePage} from "./home/home.page";
+import { EventPage } from './event/event.page';
 
 const routes: Routes = [
   {
     path: 'home',
     component: HomePage
+  },
+  {
+    path: 'event',
+    component: EventPage
   }
 ];
 
@@ -21,6 +26,6 @@ const routes: Routes = [
     FormsModule, ReactiveFormsModule
   ],
   exports: [RouterModule],
-  declarations: [HomePage]
+  declarations: [HomePage, EventPage]
 })
 export class CustomerModule {}
