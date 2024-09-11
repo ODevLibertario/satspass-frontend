@@ -6,45 +6,130 @@
 
 <ion-content [fullscreen]="true">
   <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
-    <ion-item>
-      <ion-label position="floating">Nome do Evento</ion-label>
-      <ion-input type="email" formControlName="name" required></ion-input>
-    </ion-item>
-    <ion-text color="danger" *ngIf="eventForm.get('name')?.touched && eventForm.get('name')?.invalid" class="input-error">
-      <small *ngIf="eventForm.get('name')?.errors?['required']: false">Nome do Evento é obrigatório.</small>
-    </ion-text>
-    <ion-item style="align-items: center">
-      <ion-label position="stacked" style="margin-bottom: 2%;">Data de início</ion-label>
-      <div style="display: flex; flex-direction: row;">
-        <ion-picker>
-          <ion-picker-column value="">
-            <ion-picker-column-option value="" disabled="true">Dia</ion-picker-column-option>
-            <ion-picker-column-option value="javascript">01</ion-picker-column-option>
-            <ion-picker-column-option value="typescript">02</ion-picker-column-option>
-            <ion-picker-column-option value="rust">03</ion-picker-column-option>
-            <ion-picker-column-option value="c#">04</ion-picker-column-option>
-          </ion-picker-column>
-        </ion-picker>
-        <ion-picker >
-          <ion-picker-column value="">
-            <ion-picker-column-option value="" disabled="true">Mês</ion-picker-column-option>
-            <ion-picker-column-option value="javascript">01</ion-picker-column-option>
-            <ion-picker-column-option value="typescript">02</ion-picker-column-option>
-            <ion-picker-column-option value="rust">03</ion-picker-column-option>
-            <ion-picker-column-option value="c#">04</ion-picker-column-option>
-          </ion-picker-column>
-        </ion-picker>
-        <ion-picker >
-          <ion-picker-column value="">
-            <ion-picker-column-option value="" disabled="true">Ano</ion-picker-column-option>
-            <ion-picker-column-option value="javascript">2024</ion-picker-column-option>
-            <ion-picker-column-option value="typescript">2025</ion-picker-column-option>
-            <ion-picker-column-option value="rust">2026</ion-picker-column-option>
-          </ion-picker-column>
-        </ion-picker>
-      </div>
-    </ion-item>
+    <ion-grid style="width: 100%;">
+      <ion-row>
+        <ion-col class="center-content">
+          <ion-item>
+            <ion-label position="floating">Nome do Evento</ion-label>
+            <ion-input type="email" formControlName="name" required></ion-input>
+          </ion-item>
+          <ion-text color="danger" *ngIf="eventForm.get('name')?.touched && eventForm.get('name')?.invalid" class="input-error">
+            <small *ngIf="eventForm.get('name')?.errors?['required']: false">Nome do Evento é obrigatório.</small>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="left-side-column" >
+          <ion-item>
+            <ion-label position="stacked" class="label">Data de início</ion-label>
+            <date-time-picker
+              label="Data de início"
+              type="date"
+              style="align-self: center"
+              (valueChange)="onStartDateChange($event)"
+            ></date-time-picker>
+          </ion-item>
+        </ion-col>
+        <ion-col class="right-side-column">
+          <ion-text color="danger" *ngIf="startDate && !startDate.valid" class="input-error">
+            <small>Data de início inválida.</small>
+          </ion-text>
+          <ion-item>
+            <ion-label position="stacked" class="label" >Data fim</ion-label>
+            <date-time-picker
+              label="Data fim"
+              type="date"
+              style="align-self: center"
+              (valueChange)="onEndDateChange($event)"
+            ></date-time-picker>
+          </ion-item>
+          <ion-text color="danger" *ngIf="endDate && !endDate.valid" class="input-error">
+            <small>Data de fim inválida.</small>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="left-side-column" >
+          <ion-item>
+            <ion-label position="stacked" class="label">Hora de início</ion-label>
+            <date-time-picker
+              label="Hora de início"
+              type="time"
+              style="align-self: center"
+              (valueChange)="onStartTimeChange($event)"
+            ></date-time-picker>
+          </ion-item>
+          <ion-text color="danger" *ngIf="startTime && !startTime.valid" class="input-error">
+            <small>Hora de início inválida.</small>
+          </ion-text>
+        </ion-col>
+        <ion-col class="right-side-column">
+          <ion-item>
+            <ion-label position="stacked" class="label">Hora fim</ion-label>
+            <date-time-picker
+              label="Hora fim"
+              type="time"
+              style="align-self: center"
+              (valueChange)="onEndTimeChange($event)"
+            ></date-time-picker>
+          </ion-item>
+          <ion-text color="danger" *ngIf="endTime && !endTime.valid" class="input-error">
+            <small>Hora fim inválida.</small>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="center-content">
+          <ion-item>
+            <ion-label position="floating">Descrição</ion-label>
+            <ion-input type="text" formControlName="description" required></ion-input>
+          </ion-item>
+          <ion-text color="danger" *ngIf="eventForm.get('description')?.touched && eventForm.get('description')?.invalid" class="input-error">
+            <small *ngIf="eventForm.get('description')?.errors?['required']: false">Descrição é obrigatória.</small>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="center-content">
+          <ion-item>
+            <ion-label position="floating">Localização</ion-label>
+            <ion-input type="text" formControlName="location"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="center-content">
+          <ion-item>
+            <ion-label position="floating">URL do banner</ion-label>
+            <ion-input type="text" formControlName="publicityImageUrl"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
 
+      <ion-row>
+        <ion-col class="center-content">
+          <ion-item>
+            <ion-label position="floating">Categorias</ion-label>
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  VIP
+                </ion-col>
+                <ion-col>
+                  2000 sats
+                </ion-col>
+                <ion-col>
+                  V X
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-button expand="block" type="submit" [disabled]="eventForm.invalid">ADICIONAR CATEGORIA</ion-button>
+    <ion-button expand="block" type="submit" [disabled]="eventForm.invalid">PUBLICAR EVENTO</ion-button>
     <ion-button expand="block" type="submit" [disabled]="eventForm.invalid">CRIAR EVENTO</ion-button>
     <ion-button expand="block" color="secondary" (click)="navigateToHome()">Voltar</ion-button>
 

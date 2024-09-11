@@ -5,6 +5,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {IonicModule} from "@ionic/angular";
 import {HomePage} from "./home/home.page";
 import {EventPage} from "./event/event.page";
+import {DateTimePickerComponent} from "../../components/date-time-picker/date-time-picker.component";
 
 const routes: Routes = [
   {
@@ -27,6 +28,6 @@ const routes: Routes = [
     FormsModule, ReactiveFormsModule
   ],
   exports: [RouterModule],
-  declarations: [HomePage, EventPage]
+  declarations: [HomePage, EventPage, DateTimePickerComponent]
 })
 export class ManagerModule {}

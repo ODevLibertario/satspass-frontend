@@ -1,0 +1,28 @@
+<div style="display: flex; flex-direction: row;justify-content: center;">
+    <ion-picker *ngIf="type === 'date'">
+      <ion-picker-column value="{{value.day}}" (ionChange)="onChange('day', $event)" >
+        <ion-picker-column-option value="" disabled="true">Dia</ion-picker-column-option>
+        <ion-picker-column-option value="{{day}}" *ngFor="let day of getDays()">{{day}}</ion-picker-column-option>
+      </ion-picker-column>
+      <ion-picker-column value="{{value.month}}" (ionChange)="onChange('month', $event)">
+        <ion-picker-column-option value="" disabled="true">Mês</ion-picker-column-option>
+        <ion-picker-column-option value="{{month}}" *ngFor="let month of getMonths()" >{{month}}</ion-picker-column-option>
+      </ion-picker-column>
+      <ion-picker-column value="{{value.year}}" (ionChange)="onChange('year', $event)">
+        <ion-picker-column-option value="" disabled="true">Ano</ion-picker-column-option>
+        <ion-picker-column-option value="{{year}}" *ngFor="let year of getYears()">{{year}}</ion-picker-column-option>
+      </ion-picker-column>
+    </ion-picker>
+
+    <ion-picker *ngIf="type === 'time'">
+      <ion-picker-column value="{{value.hour}}">
+        <ion-picker-column-option value="" disabled="true">Hora</ion-picker-column-option>
+        <ion-picker-column-option value="{{hour}}" *ngFor="let hour of getHours()">{{hour}}</ion-picker-column-option>
+      </ion-picker-column>
+      <ion-picker-column value="{{value.minute}}">
+        <ion-picker-column-option value="" disabled="true">Minuto</ion-picker-column-option>
+        <ion-picker-column-option value="{{minute}}" *ngFor="let minute of getMinutes()">{{minute}}</ion-picker-column-option>
+      </ion-picker-column>
+    </ion-picker>
+</div>
+
