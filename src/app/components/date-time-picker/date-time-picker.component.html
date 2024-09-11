@@ -15,11 +15,11 @@
     </ion-picker>
 
     <ion-picker *ngIf="type === 'time'">
-      <ion-picker-column value="{{value.hour}}">
+      <ion-picker-column value="{{value.hour}}" (ionChange)="onChange('hour', $event)">
         <ion-picker-column-option value="" disabled="true">Hora</ion-picker-column-option>
         <ion-picker-column-option value="{{hour}}" *ngFor="let hour of getHours()">{{hour}}</ion-picker-column-option>
       </ion-picker-column>
-      <ion-picker-column value="{{value.minute}}">
+      <ion-picker-column value="{{value.minute}}" (ionChange)="onChange('minute', $event)">
         <ion-picker-column-option value="" disabled="true">Minuto</ion-picker-column-option>
         <ion-picker-column-option value="{{minute}}" *ngFor="let minute of getMinutes()">{{minute}}</ion-picker-column-option>
       </ion-picker-column>

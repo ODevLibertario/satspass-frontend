@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <form [formGroup]="signupForm" (ngSubmit)="onSignup()">
+  <form [formGroup]="signupForm">
     <ion-item>
       <ion-label position="floating">Email</ion-label>
       <ion-input type="email" formControlName="email" required></ion-input>

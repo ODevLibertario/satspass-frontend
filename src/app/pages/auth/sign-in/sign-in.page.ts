@@ -42,7 +42,6 @@ export class SignInPage {
     this.signInForm.reset()
     await this.storage.set('token', token)
     await this.storage.set('role', role)
-    console.log(role)
     await this.router.navigate(['/' + this.toPrettyRole(role) + '/home'])
   }
 

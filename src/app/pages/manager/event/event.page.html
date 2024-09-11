@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="eventForm">
     <ion-grid style="width: 100%;">
       <ion-row>
         <ion-col class="center-content">
@@ -128,9 +128,9 @@
       </ion-row>
     </ion-grid>
 
-    <ion-button expand="block" type="submit" [disabled]="eventForm.invalid">ADICIONAR CATEGORIA</ion-button>
-    <ion-button expand="block" type="submit" [disabled]="eventForm.invalid">PUBLICAR EVENTO</ion-button>
-    <ion-button expand="block" type="submit" [disabled]="eventForm.invalid">CRIAR EVENTO</ion-button>
+    <ion-button expand="block"  [disabled]="eventForm.invalid">ADICIONAR CATEGORIA</ion-button>
+    <ion-button expand="block"  [disabled]="eventForm.invalid">PUBLICAR EVENTO</ion-button>
+    <ion-button expand="block"  (click)="onSubmit()" [disabled]="eventForm.invalid && !startDate?.valid && !endDate?.valid && !startTime?.valid && !endTime?.valid">CRIAR EVENTO</ion-button>
     <ion-button expand="block" color="secondary" (click)="navigateToHome()">Voltar</ion-button>
 
   </form>

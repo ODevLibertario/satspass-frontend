@@ -41,7 +41,7 @@ export class SignUpPage {
       email, username, password
     ))
     this.signupForm.reset();
-    await this.router.navigate(['/verify-email'], {queryParams: {email}});
+    await this.router.navigate(['/auth/verify-email'], {queryParams: {email}});
   }
 
   navigateToLanding() {
