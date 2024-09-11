@@ -4,6 +4,7 @@ import {firstValueFrom, Observable} from 'rxjs';
 import {environment} from "../environments/environment";
 import {SignUpRequest} from "../model/SignUpRequest";
 import {UpsertEventRequest} from "../model/UpsertEventRequest";
+import {Event} from "../model/Event";
 
 @Injectable({
   providedIn: 'root',
@@ -37,5 +38,10 @@ export class SatspassApiService {
   addEvent(upsertEventRequest: UpsertEventRequest): Promise<Object> {
     const url = `${this.apiUrl}/manager/events`;
     return firstValueFrom(this.http.post(url, {...upsertEventRequest}));
+  }
+
+  getCustomerEvents(): Promise<Event[]>{
+    const url = `${this.apiUrl}/customer/events`;
+    return firstValueFrom(this.http.get(url)) as Promise<Event[]>;
   }
 }

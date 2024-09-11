@@ -5,37 +5,38 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <img src="https://imgs.search.brave.com/nzV7SZzqSuN6fgc0Bq9AHuHFa5de0DgZWv2O1lQKrBM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9ibG9n/LnN5bXBsYS5jb20u/YnIvd3AtY29udGVu/dC91cGxvYWRzLzIw/MjMvMDMvZXZlbnRv/cy1nZXJhY2FvLXou/anBn" class="imagem-event" alt="teste">
+  <form>
+  <img src="https://arenabsb.com.br/wp-content/webp-express/webp-images/uploads/2024/05/Untitled.jpg.webp" class="imagem-event" alt="teste">
     <ion-text class="teste">
-    <p>{{event.name}}</p><br>
+    <p class="border"> {{event?.name}}</p><br>
     <ion-grid>
       <ion-row>
         <ion-col class="color-colum2">Local: </ion-col>
-        <ion-col class="color-colum">Mané garrincha</ion-col>
+        <ion-col class="color-colum">{{event?.location}}</ion-col>
       </ion-row>
     </ion-grid>
-    <div class="linha-divisoria"></div>
+    <div class="divider-line"></div>
     <ion-grid>
       <ion-row>
         <ion-col class="color-colum2">Dia(s)</ion-col>
-        <ion-col class="color-colum">01/01/2024 - 02/01/2024</ion-col>
+        <ion-col class="color-colum">{{event?.startDate |  date:'dd/MM/yyyy'}} - {{event?.endDate |  date:'dd/MM/yyyy'}}</ion-col>
       </ion-row>
     </ion-grid>
-    <div class="linha-divisoria"></div>
+    <div class="divider-line"></div>
     <ion-grid>
       <ion-row>
         <ion-col class="color-colum2">Horas</ion-col>
-        <ion-col class="color-colum">18:00 - 00:01</ion-col>
+        <ion-col class="color-colum">{{ event?.startTime | date: 'HH:hh' }} - {{ event?.endDate | date: 'HH:hh' }}</ion-col>
       </ion-row>
     </ion-grid>
 
     <br>
-    <p>{{event.description}}</p>
+    <p class="border">{{event?.description}}</p>
     </ion-text><br>
-    <ion-content>
-      <ion-button class="botao-no-centro">Comprar</ion-button>
-    </ion-content>
-    
-  
-  
+
+  <ion-button expand="block">Comprar</ion-button>
+
+  </form>
+
+
 </ion-content>

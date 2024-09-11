@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {SatspassApiService} from "../../../../service/SatspassApiService";
+import {Event} from "../../../../model/Event";
 
 @Component({
   selector: 'app-event',
@@ -6,18 +8,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./event.page.scss'],
 })
 export class EventPage implements OnInit {
-  event = {
-    "publicityImageUrl":'',
-    "name": "Evento teste", 
-    "location": "Local: mané garrincha",
-    "startDate": 'Dia: 01/01/2024 - 02/01/2024',
-    "startTimeAndEndTime": 'Horas: 18:00 - 00:01',
-    "description": 'Zhcsgdcsdg sdgshgdcs sgdvbsdfgsdf sgfgdsgf s gsdggd fsgd fgslgjdfvsbd fgsd'
-  }
+  event: Event | undefined = undefined;
 
-  constructor() { }
+  constructor(private satspassApiService: SatspassApiService) {
+
+    }
+
+
 
   ngOnInit() {
+    this.satspassApiService.getCustomerEvents().then(r => {
+      this.event = r[0]
+      console.log(this.event)
+    })
   }
 
 }
+
+

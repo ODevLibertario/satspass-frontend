@@ -1,32 +1,29 @@
 .imagem-event {
     width: 100%;
-    height: auto; 
+    height: auto;
     object-fit: contain;
   }
 .teste{
     color: #326a8f;
-    font-size: 35px; /* Aumenta o tamanho da fonte para 24 pixels */
-      
+    font-size: 35px;
+
 }
-.linha-divisoria {
+.divider-line {
     color: 326a8f;
     height: 2px;
     background-color: #14293d;
     margin: 20px 0;
   }
-  
-.botao-no-centro{
-    color: black;
-    background: #4482a6;
-    display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 10%;
-}
+
+
 .color-colum{
+    font-size: 30px;
     color: white;
 }
 p{
     color: white;
+}
+.border{
+  padding-left: 5px;
 }
 
