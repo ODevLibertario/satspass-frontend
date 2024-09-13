@@ -5,6 +5,7 @@ import {environment} from "../environments/environment";
 import {SignUpRequest} from "../model/SignUpRequest";
 import {UpsertEventRequest} from "../model/UpsertEventRequest";
 import {Event} from "../model/Event";
+import {UpsertTicketCategoryRequest} from "../model/UpsertTicketCategoryRequest";
 
 @Injectable({
   providedIn: 'root',
@@ -35,13 +36,23 @@ export class SatspassApiService {
     return firstValueFrom(this.http.post(url, {email}));
   }
 
-  addEvent(upsertEventRequest: UpsertEventRequest): Promise<Object> {
+  addEvent(upsertEventRequest: UpsertEventRequest): Promise<{ eventId: string }> {
     const url = `${this.apiUrl}/manager/events`;
-    return firstValueFrom(this.http.post(url, {...upsertEventRequest}));
+    return firstValueFrom(this.http.post(url, {...upsertEventRequest})) as Promise<{ eventId: string }>;
   }
 
   getCustomerEvents(): Promise<Event[]>{
     const url = `${this.apiUrl}/customer/events`;
     return firstValueFrom(this.http.get(url)) as Promise<Event[]>;
+  }
+
+  addTicketCategory(eventId: string, upsertTicketCategoryRequest: UpsertTicketCategoryRequest): Promise<Object> {
+    const url = `${this.apiUrl}/manager/events/${eventId}/ticket-categories`;
+    return firstValueFrom(this.http.post(url, {...upsertTicketCategoryRequest}));
+  }
+
+  async getEvent(eventId: string) {
+    const url = `${this.apiUrl}/manager/events/${eventId}`;
+    return firstValueFrom(this.http.get(url)) as Promise<Event>;
   }
 }

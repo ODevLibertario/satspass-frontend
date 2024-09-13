@@ -23,12 +23,29 @@ export class DateTimePickerComponent implements OnInit {
   @Input() label!: string;
   @Input() type!: string;
 
-  value: any = {
+  defaultValue = {
     'day': '01',
     'month': '01',
     'year': '2024',
     'hour': '00',
     'minute': '00'
+  }
+
+  value: any = this.defaultValue
+
+  @Input()
+  set initialValue(isoDate: Date | undefined) {
+    if(this.value == this.defaultValue && isoDate !== undefined) {
+      const parsed = moment(isoDate)
+      console.log(parsed.date())
+      this.value = {
+        day: parsed.date() < 10 ? "0" + parsed.date(): parsed.date(),
+        month: parsed.month() < 10 ? "0" + (parsed.month() + 1): parsed.month() + 1,
+        year: parsed.year(),
+        hour: parsed.hour() < 10 ? "0" + parsed.hour(): parsed.hour(),
+        minute: parsed.minute()  < 10 ? "0" + parsed.minute(): parsed.minute()
+      }
+    }
   }
 
   @Output() valueChange: EventEmitter<DateTimePickerOuput> = new EventEmitter<DateTimePickerOuput>();

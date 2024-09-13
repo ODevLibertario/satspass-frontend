@@ -1,33 +1,7 @@
-.center-content {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+.separator {
+  border-bottom: 1px solid #595555;
 }
 
-.left-side-column {
-  display: flex;
-  justify-content: center;
-}
-
-.right-side-column {
-  display: flex;
-  justify-content: center;
-}
-
-
-@media (min-width: 533px) {
-  .left-side-column {
-    display: flex;
-    justify-content: end;
-  }
-
-  .right-side-column {
-    display: flex;
-    justify-content: start;
-  }
-}
-
-.label {
-  font-size: 16px;
-  margin-bottom: 2%;
+.icon {
+  font-size: 22px; margin-right: 5%;
 }

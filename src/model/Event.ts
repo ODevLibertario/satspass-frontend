@@ -1,3 +1,5 @@
+import {TicketCategory} from "./TicketCategory";
+
 export class Event {
   id: string;
   managerId: string;
@@ -12,6 +14,7 @@ export class Event {
   eventStatus: EventStatus;
   createdAt?: Date;
   updatedAt?: Date;
+  ticketCategories: TicketCategory[];
 
   constructor(
     id: string,
@@ -26,7 +29,8 @@ export class Event {
     location?: string,
     publicityImageUrl?: string,
     createdAt?: Date,
-    updatedAt?: Date
+    updatedAt?: Date,
+    ticketCategories: TicketCategory[] = [],
   ) {
     this.id = id;
     this.managerId = managerId;
@@ -41,6 +45,7 @@ export class Event {
     this.publicityImageUrl = publicityImageUrl;
     this.createdAt = createdAt;
     this.updatedAt = updatedAt;
+    this.ticketCategories = ticketCategories;
   }
 }
 
