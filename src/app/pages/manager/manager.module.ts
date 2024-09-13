@@ -6,6 +6,7 @@ import {IonicModule} from "@ionic/angular";
 import {HomePage} from "./home/home.page";
 import {EventPage} from "./event/event.page";
 import {DateTimePickerComponent} from "../../components/date-time-picker/date-time-picker.component";
+import {TicketCategoryPage} from "./ticket-category/ticket-category.page";
 
 const routes: Routes = [
   {
@@ -15,6 +16,14 @@ const routes: Routes = [
   {
     path: 'event',
     component: EventPage
+  },
+  {
+    path: 'event/:eventId',
+    component: EventPage
+  },
+  {
+    path: 'ticket-category/:eventId',
+    component: TicketCategoryPage
   },
 ];
 
@@ -28,6 +37,6 @@ const routes: Routes = [
     FormsModule, ReactiveFormsModule
   ],
   exports: [RouterModule],
-  declarations: [HomePage, EventPage, DateTimePickerComponent]
+  declarations: [HomePage, EventPage, TicketCategoryPage, DateTimePickerComponent]
 })
 export class ManagerModule {}

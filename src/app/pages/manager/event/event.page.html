@@ -23,20 +23,22 @@
           <ion-item>
             <ion-label position="stacked" class="label">Data de início</ion-label>
             <date-time-picker
+              [initialValue]="startDateInitialValue"
               label="Data de início"
               type="date"
               style="align-self: center"
               (valueChange)="onStartDateChange($event)"
             ></date-time-picker>
           </ion-item>
-        </ion-col>
-        <ion-col class="right-side-column">
           <ion-text color="danger" *ngIf="startDate && !startDate.valid" class="input-error">
             <small>Data de início inválida.</small>
           </ion-text>
+        </ion-col>
+        <ion-col class="right-side-column">
           <ion-item>
             <ion-label position="stacked" class="label" >Data fim</ion-label>
             <date-time-picker
+              [initialValue]="endDateInitialValue"
               label="Data fim"
               type="date"
               style="align-self: center"
@@ -53,6 +55,7 @@
           <ion-item>
             <ion-label position="stacked" class="label">Hora de início</ion-label>
             <date-time-picker
+              [initialValue]="startTimeInitialValue"
               label="Hora de início"
               type="time"
               style="align-self: center"
@@ -67,6 +70,7 @@
           <ion-item>
             <ion-label position="stacked" class="label">Hora fim</ion-label>
             <date-time-picker
+              [initialValue]="endTimeInitialValue"
               label="Hora fim"
               type="time"
               style="align-self: center"
@@ -109,17 +113,28 @@
       <ion-row>
         <ion-col class="center-content">
           <ion-item>
-            <ion-label position="floating">Categorias</ion-label>
-            <ion-grid>
-              <ion-row>
+            <ion-label position="floating" class="label">Categorias</ion-label>
+            <ion-grid style="width: 100%">
+              <ion-row class="separator">
                 <ion-col>
-                  VIP
+                  Nome
                 </ion-col>
                 <ion-col>
-                  2000 sats
+                  Preço
                 </ion-col>
                 <ion-col>
-                  V X
+                </ion-col>
+              </ion-row>
+              <ion-row *ngFor="let ticketCategory of event?.ticketCategories">
+                <ion-col>
+                  {{ticketCategory.categoryName}}
+                </ion-col>
+                <ion-col>
+                  {{ticketCategory.price}} sats
+                </ion-col>
+                <ion-col style="display: flex; justify-content: flex-end">
+                  <ion-icon class="icon" name="pencil-sharp"></ion-icon>
+                  <ion-icon class="icon" name="trash-bin-sharp"></ion-icon>
                 </ion-col>
               </ion-row>
             </ion-grid>
@@ -128,9 +143,9 @@
       </ion-row>
     </ion-grid>
 
-    <ion-button expand="block"  [disabled]="eventForm.invalid">ADICIONAR CATEGORIA</ion-button>
+    <ion-button expand="block"  [disabled]="!eventId" (click)="navigateToTicketCategory()">ADICIONAR CATEGORIA</ion-button>
     <ion-button expand="block"  [disabled]="eventForm.invalid">PUBLICAR EVENTO</ion-button>
-    <ion-button expand="block"  (click)="onSubmit()" [disabled]="eventForm.invalid && !startDate?.valid && !endDate?.valid && !startTime?.valid && !endTime?.valid">CRIAR EVENTO</ion-button>
+    <ion-button expand="block"  (click)="onSubmit()" [disabled]="eventForm.invalid || !startDate?.valid || !endDate?.valid || !startTime?.valid || !endTime?.valid">CRIAR EVENTO</ion-button>
     <ion-button expand="block" color="secondary" (click)="navigateToHome()">Voltar</ion-button>
 
   </form>

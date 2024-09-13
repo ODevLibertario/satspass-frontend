@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Categoria de Ingresso</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="ticketCategoryForm">
+    <ion-grid style="width: 100%;">
+      <ion-row>
+        <ion-col class="center-content">
+          <ion-item>
+            <ion-label position="floating">Nome</ion-label>
+            <ion-input type="text" formControlName="categoryName" required></ion-input>
+          </ion-item>
+          <ion-text color="danger" *ngIf="ticketCategoryForm.get('categoryName')?.touched && ticketCategoryForm.get('categoryName')?.invalid" class="input-error">
+            <small *ngIf="ticketCategoryForm.get('categoryName')?.errors?['required']: false">Nome é obrigatório.</small> <br>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="center-content">
+          <ion-item>
+            <ion-label position="floating">Preço (em sats)</ion-label>
+            <ion-input type="text" formControlName="price" required></ion-input>
+          </ion-item>
+          <ion-text color="danger" *ngIf="ticketCategoryForm.get('price')?.touched && ticketCategoryForm.get('price')?.invalid" class="input-error">
+            <small *ngIf="ticketCategoryForm.get('price')?.errors?['required']: false">Preço é obrigatório.</small> <br>
+            <small *ngIf="ticketCategoryForm.get('price')?.errors?['pattern']: false">Preço deve ser um número.</small> <br>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="center-content">
+          <ion-item>
+            <ion-label position="floating">Quantidade</ion-label>
+            <ion-input type="text" formControlName="quantity" required></ion-input>
+          </ion-item>
+          <ion-text color="danger" *ngIf="ticketCategoryForm.get('quantity')?.touched && ticketCategoryForm.get('quantity')?.invalid" class="input-error">
+            <small *ngIf="ticketCategoryForm.get('quantity')?.errors?['required']: false">A quantidade é obrigatória.</small> <br>
+            <small *ngIf="ticketCategoryForm.get('quantity')?.errors?['pattern']: false">A quantidade deve ser um número.</small> <br>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="left-side-column" >
+          <ion-item>
+            <ion-label position="stacked" class="label">Data de início das vendas</ion-label>
+            <date-time-picker
+              label="Data de início das vendas"
+              type="date"
+              style="align-self: center"
+              (valueChange)="onStartDateChange($event)"
+            ></date-time-picker>
+          </ion-item>
+        </ion-col>
+        <ion-col class="right-side-column">
+          <ion-text color="danger" *ngIf="startDate && !startDate.valid" class="input-error">
+            <small>Data de início inválida.</small>
+          </ion-text>
+          <ion-item>
+            <ion-label position="stacked" class="label" >Data fim das vendas</ion-label>
+            <date-time-picker
+              label="Data fim"
+              type="date"
+              style="align-self: center"
+              (valueChange)="onEndDateChange($event)"
+            ></date-time-picker>
+          </ion-item>
+          <ion-text color="danger" *ngIf="endDate && !endDate.valid" class="input-error">
+            <small>Data de fim inválida.</small>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
+    <ion-button expand="block" type="submit" [disabled]="ticketCategoryForm.invalid || !startDate?.valid || !endDate?.valid" (click)="onSubmit()">CRIAR CATEGORIA</ion-button>
+    <ion-button expand="block" color="secondary" (click)="navigateToEvent()">Voltar</ion-button>
+  </form>
+</ion-content>
