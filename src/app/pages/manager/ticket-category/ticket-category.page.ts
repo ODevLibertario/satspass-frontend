@@ -57,8 +57,8 @@ export class TicketCategoryPage {
       this.ticketCategoryForm.value.price,
       'BRL',
       this.ticketCategoryForm.value.quantity,
-      moment(this.startDate!.value, 'DD/MM/YYYY').toDate(),
-      moment(this.endDate!.value, 'DD/MM/YYYY').toDate(),
+      new Date(),
+      moment('31/12/2100', 'DD/MM/YYYY').toDate(),
     ))
     this.navigateToEvent()
 

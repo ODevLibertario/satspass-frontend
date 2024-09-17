@@ -6,7 +6,8 @@ import {ModalService} from "../../../../service/ModalService";
 import {DateTimePickerOuput} from "../../../components/date-time-picker/date-time-picker.component";
 import {UpsertEventRequest} from "../../../../model/UpsertEventRequest";
 import * as moment from "moment";
-import {Event} from "../../../../model/Event";
+import {Event, EventStatus} from "../../../../model/Event";
+import {AlertController} from "@ionic/angular";
 
 @Component({
   selector: 'app-event',
@@ -32,7 +33,8 @@ export class EventPage implements OnInit {
     private router: Router,
     private satspassApiService: SatspassApiService,
     private modalService: ModalService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private alertController: AlertController,
   ) {
     this.eventForm = this.formBuilder.group({
       name: ['', [Validators.required]],
@@ -43,24 +45,30 @@ export class EventPage implements OnInit {
   }
 
   async ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('eventId')
-    if(id != null) {
-      this.eventId = id;
-      this.event = await this.satspassApiService.getEvent(this.eventId)
-      if(this.event){
-        this.eventForm.setValue({
-          name: this.event.name,
-          description: this.event.description,
-          location: this.event.location,
-          publicityImageUrl: this.event.publicityImageUrl,
-        })
-        this.startDateInitialValue = this.event.startDate
-        this.endDateInitialValue = this.event.endDate
-        this.startTimeInitialValue = this.event.startTime
-        this.endTimeInitialValue = this.event.endTime
+    this.route.paramMap.subscribe(async params => {
+      const id = params.get('eventId');
+      if (id != null) {
+        await this.refreshEvent(id);
       }
-    }
+    })
+  }
 
+  private async refreshEvent(eventId: string) {
+    this.eventId = eventId;
+    this.event = await this.satspassApiService.getEvent(this.eventId)
+    console.log(this.event)
+    if (this.event) {
+      this.eventForm.setValue({
+        name: this.event.name,
+        description: this.event.description,
+        location: this.event.location,
+        publicityImageUrl: this.event.publicityImageUrl,
+      })
+      this.startDateInitialValue = this.event.startDate
+      this.endDateInitialValue = this.event.endDate
+      this.startTimeInitialValue = this.event.startTime
+      this.endTimeInitialValue = this.event.endTime
+    }
   }
 
   async onSubmit() {
@@ -107,4 +115,26 @@ export class EventPage implements OnInit {
   onEndTimeChange(event: DateTimePickerOuput) {
     this.endTime = event;
   }
+
+  async publishEvent() {
+    const alert = await this.alertController.create(
+      {
+        header: 'Publicar evento',
+        message: 'Tem certeza? O evento não poderá ser editado ou excluído após a publicação.',
+        buttons: [{
+          text: 'Sim',
+          handler: () => {
+            this.modalService.wrapInLoading(() => {
+              return this.satspassApiService.publishEvent(this.eventId!)
+            }).then(r => this.refreshEvent(this.eventId!))
+          },
+        }, 'Não'],
+
+      }
+    )
+
+    await alert.present()
+  }
+
+  protected readonly EventStatus = EventStatus;
 }

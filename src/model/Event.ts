@@ -11,7 +11,7 @@ export class Event {
   description?: string;
   location?: string;
   publicityImageUrl?: string;
-  eventStatus: EventStatus;
+  eventStatus: string;
   createdAt?: Date;
   updatedAt?: Date;
   ticketCategories: TicketCategory[];
@@ -24,7 +24,7 @@ export class Event {
     endDate: Date,
     startTime: Date,
     endTime: Date,
-    eventStatus: EventStatus,
+    eventStatus: string,
     description?: string,
     location?: string,
     publicityImageUrl?: string,
@@ -49,9 +49,7 @@ export class Event {
   }
 }
 
-enum EventStatus {
-  SCHEDULED,
-  ONGOING,
-  COMPLETED,
-  CANCELLED,
+export enum EventStatus {
+  DRAFT,
+  PUBLISHED
 }

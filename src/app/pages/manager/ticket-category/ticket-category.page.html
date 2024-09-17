@@ -42,36 +42,6 @@
           </ion-text>
         </ion-col>
       </ion-row>
-      <ion-row>
-        <ion-col class="left-side-column" >
-          <ion-item>
-            <ion-label position="stacked" class="label">Data de início das vendas</ion-label>
-            <date-time-picker
-              label="Data de início das vendas"
-              type="date"
-              style="align-self: center"
-              (valueChange)="onStartDateChange($event)"
-            ></date-time-picker>
-          </ion-item>
-        </ion-col>
-        <ion-col class="right-side-column">
-          <ion-text color="danger" *ngIf="startDate && !startDate.valid" class="input-error">
-            <small>Data de início inválida.</small>
-          </ion-text>
-          <ion-item>
-            <ion-label position="stacked" class="label" >Data fim das vendas</ion-label>
-            <date-time-picker
-              label="Data fim"
-              type="date"
-              style="align-self: center"
-              (valueChange)="onEndDateChange($event)"
-            ></date-time-picker>
-          </ion-item>
-          <ion-text color="danger" *ngIf="endDate && !endDate.valid" class="input-error">
-            <small>Data de fim inválida.</small>
-          </ion-text>
-        </ion-col>
-      </ion-row>
     </ion-grid>
 
 

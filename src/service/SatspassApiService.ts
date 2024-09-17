@@ -55,4 +55,9 @@ export class SatspassApiService {
     const url = `${this.apiUrl}/manager/events/${eventId}`;
     return firstValueFrom(this.http.get(url)) as Promise<Event>;
   }
+
+  async publishEvent(eventId: string) {
+    const url = `${this.apiUrl}/manager/events/${eventId}/publish`;
+    return firstValueFrom(this.http.put(url, {}));
+  }
 }

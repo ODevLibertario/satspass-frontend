@@ -9,9 +9,9 @@
     <ion-grid style="width: 100%;">
       <ion-row>
         <ion-col class="center-content">
-          <ion-item>
+          <ion-item >
             <ion-label position="floating">Nome do Evento</ion-label>
-            <ion-input type="email" formControlName="name" required></ion-input>
+            <ion-input type="email" formControlName="name" required [disabled]="event?.eventStatus === 'PUBLISHED'"></ion-input>
           </ion-item>
           <ion-text color="danger" *ngIf="eventForm.get('name')?.touched && eventForm.get('name')?.invalid" class="input-error">
             <small *ngIf="eventForm.get('name')?.errors?['required']: false">Nome do Evento é obrigatório.</small>
@@ -20,7 +20,7 @@
       </ion-row>
       <ion-row>
         <ion-col class="left-side-column" >
-          <ion-item>
+          <ion-item [disabled]="event?.eventStatus === 'PUBLISHED'">
             <ion-label position="stacked" class="label">Data de início</ion-label>
             <date-time-picker
               [initialValue]="startDateInitialValue"
@@ -35,7 +35,7 @@
           </ion-text>
         </ion-col>
         <ion-col class="right-side-column">
-          <ion-item>
+          <ion-item [disabled]="event?.eventStatus === 'PUBLISHED'">
             <ion-label position="stacked" class="label" >Data fim</ion-label>
             <date-time-picker
               [initialValue]="endDateInitialValue"
@@ -52,7 +52,7 @@
       </ion-row>
       <ion-row>
         <ion-col class="left-side-column" >
-          <ion-item>
+          <ion-item [disabled]="event?.eventStatus === 'PUBLISHED'">
             <ion-label position="stacked" class="label">Hora de início</ion-label>
             <date-time-picker
               [initialValue]="startTimeInitialValue"
@@ -67,7 +67,7 @@
           </ion-text>
         </ion-col>
         <ion-col class="right-side-column">
-          <ion-item>
+          <ion-item [disabled]="event?.eventStatus === 'PUBLISHED'">
             <ion-label position="stacked" class="label">Hora fim</ion-label>
             <date-time-picker
               [initialValue]="endTimeInitialValue"
@@ -86,7 +86,7 @@
         <ion-col class="center-content">
           <ion-item>
             <ion-label position="floating">Descrição</ion-label>
-            <ion-input type="text" formControlName="description" required></ion-input>
+            <ion-input type="text" formControlName="description" required [disabled]="event?.eventStatus === 'PUBLISHED'"></ion-input>
           </ion-item>
           <ion-text color="danger" *ngIf="eventForm.get('description')?.touched && eventForm.get('description')?.invalid" class="input-error">
             <small *ngIf="eventForm.get('description')?.errors?['required']: false">Descrição é obrigatória.</small>
@@ -97,7 +97,7 @@
         <ion-col class="center-content">
           <ion-item>
             <ion-label position="floating">Localização</ion-label>
-            <ion-input type="text" formControlName="location"></ion-input>
+            <ion-input type="text" formControlName="location" [disabled]="event?.eventStatus === 'PUBLISHED'"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -105,14 +105,14 @@
         <ion-col class="center-content">
           <ion-item>
             <ion-label position="floating">URL do banner</ion-label>
-            <ion-input type="text" formControlName="publicityImageUrl"></ion-input>
+            <ion-input type="text" formControlName="publicityImageUrl" [disabled]="event?.eventStatus === 'PUBLISHED'"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
 
       <ion-row>
         <ion-col class="center-content">
-          <ion-item>
+          <ion-item [disabled]="event?.eventStatus === 'PUBLISHED'">
             <ion-label position="floating" class="label">Categorias</ion-label>
             <ion-grid style="width: 100%">
               <ion-row class="separator">
@@ -121,6 +121,9 @@
                 </ion-col>
                 <ion-col>
                   Preço
+                </ion-col>
+                <ion-col>
+                  Quantidade
                 </ion-col>
                 <ion-col>
                 </ion-col>
@@ -132,8 +135,11 @@
                 <ion-col>
                   {{ticketCategory.price}} sats
                 </ion-col>
+                <ion-col>
+                  {{ticketCategory.quantity}} sats
+                </ion-col>
                 <ion-col style="display: flex; justify-content: flex-end">
-                  <ion-icon class="icon" name="pencil-sharp"></ion-icon>
+                  <ion-icon class="icon" name="pencil-sharp" ></ion-icon>
                   <ion-icon class="icon" name="trash-bin-sharp"></ion-icon>
                 </ion-col>
               </ion-row>
@@ -143,10 +149,9 @@
       </ion-row>
     </ion-grid>
 
-    <ion-button expand="block"  [disabled]="!eventId" (click)="navigateToTicketCategory()">ADICIONAR CATEGORIA</ion-button>
-    <ion-button expand="block"  [disabled]="eventForm.invalid">PUBLICAR EVENTO</ion-button>
-    <ion-button expand="block"  (click)="onSubmit()" [disabled]="eventForm.invalid || !startDate?.valid || !endDate?.valid || !startTime?.valid || !endTime?.valid">CRIAR EVENTO</ion-button>
+    <ion-button expand="block"  [disabled]="!eventId || event?.eventStatus === 'PUBLISHED'" (click)="navigateToTicketCategory()">ADICIONAR CATEGORIA</ion-button>
+    <ion-button expand="block"  [disabled]="eventForm.invalid || event?.eventStatus === 'PUBLISHED'" (click)="publishEvent()">PUBLICAR EVENTO</ion-button>
+    <ion-button expand="block"  (click)="onSubmit()" [disabled]="eventForm.invalid || !startDate?.valid || !endDate?.valid || !startTime?.valid || !endTime?.valid || event?.eventStatus === 'PUBLISHED'">CRIAR EVENTO</ion-button>
     <ion-button expand="block" color="secondary" (click)="navigateToHome()">Voltar</ion-button>
-
   </form>
 </ion-content>
