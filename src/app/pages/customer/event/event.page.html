@@ -6,7 +6,7 @@
 
 <ion-content [fullscreen]="true">
   <form>
-  <img src="https://arenabsb.com.br/wp-content/webp-express/webp-images/uploads/2024/05/Untitled.jpg.webp" class="imagem-event" alt="teste">
+  <img [src]="event?.publicityImageUrl" class="imagem-event" alt="teste">
     <ion-text class="teste">
     <p class="border"> {{event?.name}}</p><br>
     <ion-grid>
@@ -19,7 +19,7 @@
     <ion-grid>
       <ion-row>
         <ion-col class="color-colum2">Dia(s)</ion-col>
-        <ion-col class="color-colum">{{event?.startDate |  date:'dd/MM/yyyy'}} - {{event?.endDate |  date:'dd/MM/yyyy'}}</ion-col>
+        <ion-col class="color-colum"> - {{event?.endDate |  date:'dd/MM/yyyy'}}</ion-col>
       </ion-row>
     </ion-grid>
     <div class="divider-line"></div>
