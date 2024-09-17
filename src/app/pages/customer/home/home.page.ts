@@ -20,7 +20,6 @@ export class HomePage implements OnInit {
   ngOnInit() {
     this.satspassApiService.getCustomerEvents().then(r => {
       this.events = r
-      console.log(this.events)
     })
   }
 

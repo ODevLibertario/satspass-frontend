@@ -110,7 +110,7 @@
         </ion-col>
       </ion-row>
 
-      <ion-row>
+      <ion-row *ngIf="event && event.ticketCategories && event.ticketCategories.length > 0">
         <ion-col class="center-content">
           <ion-item [disabled]="event?.eventStatus === 'PUBLISHED'">
             <ion-label position="floating" class="label">Categorias</ion-label>
@@ -149,9 +149,10 @@
       </ion-row>
     </ion-grid>
 
-    <ion-button expand="block"  [disabled]="!eventId || event?.eventStatus === 'PUBLISHED'" (click)="navigateToTicketCategory()">ADICIONAR CATEGORIA</ion-button>
-    <ion-button expand="block"  [disabled]="eventForm.invalid || event?.eventStatus === 'PUBLISHED'" (click)="publishEvent()">PUBLICAR EVENTO</ion-button>
-    <ion-button expand="block"  (click)="onSubmit()" [disabled]="eventForm.invalid || !startDate?.valid || !endDate?.valid || !startTime?.valid || !endTime?.valid || event?.eventStatus === 'PUBLISHED'">CRIAR EVENTO</ion-button>
+    <ion-button expand="block"  [disabled]="!eventId || event?.eventStatus === 'PUBLISHED'" (click)="deleteEvent()" class="hidden-on-disable" color="danger">REMOVER EVENTO</ion-button>
+    <ion-button expand="block"  [disabled]="!eventId || event?.eventStatus === 'PUBLISHED'" (click)="navigateToTicketCategory()" class="hidden-on-disable">ADICIONAR CATEGORIA</ion-button>
+    <ion-button expand="block"  [disabled]="!eventId || eventForm.invalid || event?.eventStatus === 'PUBLISHED'" (click)="publishEvent()" class="hidden-on-disable">PUBLICAR EVENTO</ion-button>
+    <ion-button expand="block"  [disabled]="event?.eventStatus === 'PUBLISHED' || eventForm.invalid || !startDate?.valid || !endDate?.valid || !startTime?.valid || !endTime?.valid" (click)="onSubmit()">CRIAR EVENTO</ion-button>
     <ion-button expand="block" color="secondary" (click)="navigateToHome()">Voltar</ion-button>
   </form>
 </ion-content>

@@ -157,3 +157,7 @@ swiper-slide img {
 .item-disabled {
   opacity: 0.9;
 }
+
+.button-disabled.hidden-on-disable {
+  display: none;
+}

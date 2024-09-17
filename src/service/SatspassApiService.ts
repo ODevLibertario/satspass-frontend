@@ -60,4 +60,9 @@ export class SatspassApiService {
     const url = `${this.apiUrl}/manager/events/${eventId}/publish`;
     return firstValueFrom(this.http.put(url, {}));
   }
+
+  deleteEvent(eventId: string) {
+    const url = `${this.apiUrl}/manager/events/${eventId}`;
+    return firstValueFrom(this.http.delete(url));
+  }
 }

@@ -49,6 +49,8 @@ export class EventPage implements OnInit {
       const id = params.get('eventId');
       if (id != null) {
         await this.refreshEvent(id);
+      } else {
+        this.eventId = undefined;
       }
     })
   }
@@ -56,7 +58,6 @@ export class EventPage implements OnInit {
   private async refreshEvent(eventId: string) {
     this.eventId = eventId;
     this.event = await this.satspassApiService.getEvent(this.eventId)
-    console.log(this.event)
     if (this.event) {
       this.eventForm.setValue({
         name: this.event.name,
@@ -136,5 +137,24 @@ export class EventPage implements OnInit {
     await alert.present()
   }
 
-  protected readonly EventStatus = EventStatus;
+  async deleteEvent() {
+    const alert = await this.alertController.create(
+      {
+        header: 'Remover evento',
+        message: 'Tem certeza? O evento não poderá ser recuperado.',
+        buttons: [{
+          text: 'Sim',
+          handler: () => {
+            this.modalService.wrapInLoading(() => {
+              return this.satspassApiService.deleteEvent(this.eventId!)
+            }, 'Evento removido com sucesso', 'Falha ao remover evento')
+              .then(r => this.navigateToHome())
+          },
+        }, 'Não'],
+
+      }
+    )
+
+    await alert.present()
+  }
 }

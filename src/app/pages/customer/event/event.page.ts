@@ -19,7 +19,6 @@ export class EventPage implements OnInit {
   ngOnInit() {
     this.satspassApiService.getCustomerEvents().then(r => {
       this.event = r[0]
-      console.log(this.event)
     })
   }
 

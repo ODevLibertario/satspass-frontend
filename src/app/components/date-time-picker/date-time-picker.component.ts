@@ -37,7 +37,6 @@ export class DateTimePickerComponent implements OnInit {
   set initialValue(isoDate: Date | undefined) {
     if(this.value == this.defaultValue && isoDate !== undefined) {
       const parsed = moment(isoDate)
-      console.log(parsed.date())
       this.value = {
         day: parsed.date() < 10 ? "0" + parsed.date(): parsed.date(),
         month: parsed.month() < 10 ? "0" + (parsed.month() + 1): parsed.month() + 1,
