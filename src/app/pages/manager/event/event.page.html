@@ -139,8 +139,8 @@
                   {{ticketCategory.quantity}} sats
                 </ion-col>
                 <ion-col style="display: flex; justify-content: flex-end">
-                  <ion-icon class="icon" name="pencil-sharp" ></ion-icon>
-                  <ion-icon class="icon" name="trash-bin-sharp"></ion-icon>
+                  <ion-icon class="icon" name="pencil-sharp" (click)="navigateToTicketCategory(ticketCategory)" ></ion-icon>
+                  <ion-icon class="icon" name="trash-bin-sharp" (click)="deleteTicketCategory(ticketCategory.id)"></ion-icon>
                 </ion-col>
               </ion-row>
             </ion-grid>

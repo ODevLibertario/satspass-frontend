@@ -45,7 +45,7 @@
     </ion-grid>
 
 
-    <ion-button expand="block" type="submit" [disabled]="ticketCategoryForm.invalid || !startDate?.valid || !endDate?.valid" (click)="onSubmit()">CRIAR CATEGORIA</ion-button>
+    <ion-button expand="block" type="submit" [disabled]="ticketCategoryForm.invalid" (click)="onSubmit()">CRIAR CATEGORIA</ion-button>
     <ion-button expand="block" color="secondary" (click)="navigateToEvent()">Voltar</ion-button>
   </form>
 </ion-content>

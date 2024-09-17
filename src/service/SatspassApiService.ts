@@ -65,4 +65,9 @@ export class SatspassApiService {
     const url = `${this.apiUrl}/manager/events/${eventId}`;
     return firstValueFrom(this.http.delete(url));
   }
+
+  deleteTicketCategory(eventId: string, ticketCategoryId: string) {
+    const url = `${this.apiUrl}/manager/events/${eventId}/ticket-categories/${ticketCategoryId}`;
+    return firstValueFrom(this.http.delete(url));
+  }
 }

@@ -8,6 +8,8 @@ import {UpsertEventRequest} from "../../../../model/UpsertEventRequest";
 import * as moment from "moment";
 import {Event, EventStatus} from "../../../../model/Event";
 import {AlertController} from "@ionic/angular";
+import {TicketCategoryPage} from "../ticket-category/ticket-category.page";
+import {TicketCategory} from "../../../../model/TicketCategory";
 
 @Component({
   selector: 'app-event',
@@ -97,8 +99,14 @@ export class EventPage implements OnInit {
     this.router.navigate(['/manager/home']);
   }
 
-  navigateToTicketCategory() {
-    this.router.navigate(['/manager/ticket-category', this.eventId]);
+  navigateToTicketCategory(ticketCategory: TicketCategory | undefined = undefined) {
+    if (ticketCategory != undefined) {
+      this.router.navigate(['/manager/ticket-category', this.eventId, ticketCategory.id], {
+        state: ticketCategory
+      });
+    } else {
+      this.router.navigate(['/manager/ticket-category', this.eventId]);
+    }
   }
 
   onStartDateChange(event: DateTimePickerOuput) {
@@ -149,6 +157,27 @@ export class EventPage implements OnInit {
               return this.satspassApiService.deleteEvent(this.eventId!)
             }, 'Evento removido com sucesso', 'Falha ao remover evento')
               .then(r => this.navigateToHome())
+          },
+        }, 'Não'],
+
+      }
+    )
+
+    await alert.present()
+  }
+
+  async deleteTicketCategory(ticketCategoryId: string) {
+    const alert = await this.alertController.create(
+      {
+        header: 'Remover categoria',
+        message: 'Tem certeza? A categoria não poderá ser recuperada.',
+        buttons: [{
+          text: 'Sim',
+          handler: () => {
+            this.modalService.wrapInLoading(() => {
+              return this.satspassApiService.deleteTicketCategory(this.eventId!, ticketCategoryId)
+            }, 'Categoria removida com sucesso', 'Falha ao remover categoria')
+              .then(r => this.refreshEvent(this.eventId!))
           },
         }, 'Não'],
 
