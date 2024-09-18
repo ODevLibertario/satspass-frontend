@@ -1,11 +1,14 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>Manager home</ion-title>
+    <ion-title>SATSPASS GERENCIAL</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <swiper-container [slidesPerView]="3" [loop]="true">
+  <swiper-container [slidesPerView]="clamp(events ? events.length : 0, 1, platform.is('mobile') ? 2 : 3)"
+                    [pagination]="{ clickable: true }"
+                    [attr.navigation]="!platform.is('mobile') || null"
+  >
     <swiper-slide >
       <ion-card class="event-card" (click)="navigateToEvent()" >
         <ion-card-header>
@@ -14,6 +17,29 @@
 
         <ion-card-content class="plus">
           +
+        </ion-card-content>
+      </ion-card>
+    </swiper-slide>
+    <swiper-slide *ngFor="let event of events">
+      <ion-card class="event-card" (click)="navigateToEvent(event)" >
+        <ion-card-content class="custom-background" [style.backgroundImage]="'url(' + event.publicityImageUrl + ')'">
+          <ion-grid class="text-container">
+            <ion-row>
+              <ion-col class="alignment1">
+                <div class="text-item">{{ event.name }}</div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="alignment2">
+                <div class="text-item">{{ event?.endDate | date:'dd/MM/yyyy' }}</div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col class="alignment3">
+                <div class="text-item">{{ event?.location }}</div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
         </ion-card-content>
       </ion-card>
     </swiper-slide>

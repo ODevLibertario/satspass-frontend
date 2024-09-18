@@ -1,6 +1,12 @@
 .event-card {
     width: 85% !important;
+    max-width: 250px;
+    height: 80%;
     cursor: pointer;
+}
+
+swiper-container {
+  height: 45%;
 }
 
 .plus {

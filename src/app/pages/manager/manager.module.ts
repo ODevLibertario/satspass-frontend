@@ -24,11 +24,7 @@ const routes: Routes = [
   {
     path: 'ticket-category/:eventId',
     component: TicketCategoryPage
-  },
-  {
-    path: 'ticket-category/:eventId/:ticketCategoryId',
-    component: TicketCategoryPage
-  },
+  }
 ];
 
 @NgModule({

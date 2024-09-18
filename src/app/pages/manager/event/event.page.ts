@@ -55,30 +55,45 @@ export class EventPage implements OnInit {
         this.eventId = undefined;
       }
     })
+
+    const navigation = this.router.getCurrentNavigation();
+    this.event = navigation?.extras.state as Event;
+    if (this.event != null) {
+      this.setEvent(this.event)
+    }
   }
 
   private async refreshEvent(eventId: string) {
     this.eventId = eventId;
     this.event = await this.satspassApiService.getEvent(this.eventId)
     if (this.event) {
-      this.eventForm.setValue({
-        name: this.event.name,
-        description: this.event.description,
-        location: this.event.location,
-        publicityImageUrl: this.event.publicityImageUrl,
-      })
-      this.startDateInitialValue = this.event.startDate
-      this.endDateInitialValue = this.event.endDate
-      this.startTimeInitialValue = this.event.startTime
-      this.endTimeInitialValue = this.event.endTime
+      this.setEvent(this.event);
     }
+  }
+
+  private setEvent(event: Event): void {
+    this.eventId = event.id;
+    this.eventForm.setValue({
+      name:event.name,
+      description: event.description,
+      location: event.location,
+      publicityImageUrl: event.publicityImageUrl,
+    })
+    this.startDateInitialValue = event.startDate
+    this.endDateInitialValue = event.endDate
+    this.startTimeInitialValue = event.startTime
+    this.endTimeInitialValue = event.endTime
   }
 
   async onSubmit() {
     if(this.eventForm.valid && this.startDate?.valid && this.endDate?.valid && this.startTime?.valid && this.endTime?.valid) {
       return await this.modalService.wrapInLoading(() => {
-        return this.callAddEvent()
-      }, 'Evento adicionado com sucesso!', 'Falha ao adicionar evento')
+        if(this.event) {
+          return this.callUpdateEvent()
+        } else {
+          return this.callAddEvent()
+        }
+      }, 'Evento salvo!', 'Falha ao salvar evento')
     }
   }
 
@@ -95,13 +110,27 @@ export class EventPage implements OnInit {
     ))).eventId
   }
 
+  async callUpdateEvent() {
+    await this.satspassApiService.updateEvent(this.event!.id!, new UpsertEventRequest(
+      this.eventForm.value.name,
+      moment(this.startDate!.value, 'DD/MM/YYYY').toDate(),
+      moment(this.endDate!.value, 'DD/MM/YYYY').toDate(),
+      moment(this.startTime!.value, 'HH:mm').toDate(),
+      moment(this.endTime!.value, 'HH:mm').toDate(),
+      this.eventForm.value.description,
+      this.eventForm.value.location,
+      this.eventForm.value.publicityImageUrl
+    ))
+    this.navigateToHome()
+  }
+
   navigateToHome() {
     this.router.navigate(['/manager/home']);
   }
 
   navigateToTicketCategory(ticketCategory: TicketCategory | undefined = undefined) {
     if (ticketCategory != undefined) {
-      this.router.navigate(['/manager/ticket-category', this.eventId, ticketCategory.id], {
+      this.router.navigate(['/manager/ticket-category', this.eventId], {
         state: ticketCategory
       });
     } else {

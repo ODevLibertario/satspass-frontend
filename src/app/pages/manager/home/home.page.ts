@@ -1,17 +1,40 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
+import {clamp} from "../../../../util/mathUtils";
+import {Event} from "../../../../model/Event";
+import {SatspassApiService} from "../../../../service/SatspassApiService";
+import {Platform} from "@ionic/angular";
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
 
-  constructor(private router: Router) { }
+  events: Event[] | undefined;
+
+  constructor(private router: Router, private satspassApiService: SatspassApiService, protected platform: Platform) { }
 
 
-  navigateToEvent() {
-    this.router.navigate(['/manager/event']);
+  navigateToEvent(event: Event | undefined = undefined) {
+    if (event != undefined) {
+      this.router.navigate(['/manager/event'], {
+        state: event
+      });
+    } else {
+      this.router.navigate(['/manager/event']);
+    }
   }
+
+  protected readonly clamp = clamp;
+
+  ngOnInit(): void {
+    this.satspassApiService.getManagerEvents().then(events => {
+      console.log(events);
+      this.events = events;
+    })
+  }
+
+  protected readonly Platform = Platform;
 }

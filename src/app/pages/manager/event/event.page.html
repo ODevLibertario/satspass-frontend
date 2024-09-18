@@ -30,7 +30,7 @@
               (valueChange)="onStartDateChange($event)"
             ></date-time-picker>
           </ion-item>
-          <ion-text color="danger" *ngIf="startDate && !startDate.valid" class="input-error">
+          <ion-text color="danger" *ngIf="startDate && !startDate.valid" class="side-column input-error">
             <small>Data de início inválida.</small>
           </ion-text>
         </ion-col>
@@ -45,7 +45,7 @@
               (valueChange)="onEndDateChange($event)"
             ></date-time-picker>
           </ion-item>
-          <ion-text color="danger" *ngIf="endDate && !endDate.valid" class="input-error">
+          <ion-text color="danger" *ngIf="endDate && !endDate.valid" class="side-column input-error">
             <small>Data de fim inválida.</small>
           </ion-text>
         </ion-col>
@@ -62,7 +62,7 @@
               (valueChange)="onStartTimeChange($event)"
             ></date-time-picker>
           </ion-item>
-          <ion-text color="danger" *ngIf="startTime && !startTime.valid" class="input-error">
+          <ion-text color="danger" *ngIf="startTime && !startTime.valid" class="side-column input-error">
             <small>Hora de início inválida.</small>
           </ion-text>
         </ion-col>
@@ -77,7 +77,7 @@
               (valueChange)="onEndTimeChange($event)"
             ></date-time-picker>
           </ion-item>
-          <ion-text color="danger" *ngIf="endTime && !endTime.valid" class="input-error">
+          <ion-text color="danger" *ngIf="endTime && !endTime.valid" class="side-column input-error">
             <small>Hora fim inválida.</small>
           </ion-text>
         </ion-col>
@@ -152,7 +152,7 @@
     <ion-button expand="block"  [disabled]="!eventId || event?.eventStatus === 'PUBLISHED'" (click)="deleteEvent()" class="hidden-on-disable" color="danger">REMOVER EVENTO</ion-button>
     <ion-button expand="block"  [disabled]="!eventId || event?.eventStatus === 'PUBLISHED'" (click)="navigateToTicketCategory()" class="hidden-on-disable">ADICIONAR CATEGORIA</ion-button>
     <ion-button expand="block"  [disabled]="!eventId || eventForm.invalid || event?.eventStatus === 'PUBLISHED'" (click)="publishEvent()" class="hidden-on-disable">PUBLICAR EVENTO</ion-button>
-    <ion-button expand="block"  [disabled]="event?.eventStatus === 'PUBLISHED' || eventForm.invalid || !startDate?.valid || !endDate?.valid || !startTime?.valid || !endTime?.valid" (click)="onSubmit()">CRIAR EVENTO</ion-button>
+    <ion-button expand="block"  [disabled]="event?.eventStatus === 'PUBLISHED' || eventForm.invalid || !startDate?.valid || !endDate?.valid || !startTime?.valid || !endTime?.valid" (click)="onSubmit()">{{event ? 'ATUALIZAR' : 'CRIAR'}} EVENTO</ion-button>
     <ion-button expand="block" color="secondary" (click)="navigateToHome()">Voltar</ion-button>
   </form>
 </ion-content>

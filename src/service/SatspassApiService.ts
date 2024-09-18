@@ -41,14 +41,29 @@ export class SatspassApiService {
     return firstValueFrom(this.http.post(url, {...upsertEventRequest})) as Promise<{ eventId: string }>;
   }
 
+  updateEvent(eventId: string, upsertEventRequest: UpsertEventRequest) {
+    const url = `${this.apiUrl}/manager/events/${eventId}`;
+    return firstValueFrom(this.http.put(url, {...upsertEventRequest}));
+  }
+
   getCustomerEvents(): Promise<Event[]>{
     const url = `${this.apiUrl}/customer/events`;
+    return firstValueFrom(this.http.get(url)) as Promise<Event[]>;
+  }
+
+  getManagerEvents(): Promise<Event[]>{
+    const url = `${this.apiUrl}/manager/events`;
     return firstValueFrom(this.http.get(url)) as Promise<Event[]>;
   }
 
   addTicketCategory(eventId: string, upsertTicketCategoryRequest: UpsertTicketCategoryRequest): Promise<Object> {
     const url = `${this.apiUrl}/manager/events/${eventId}/ticket-categories`;
     return firstValueFrom(this.http.post(url, {...upsertTicketCategoryRequest}));
+  }
+
+  updateTicketCategory(eventId: string, ticketCategoryId: string, upsertTicketCategoryRequest: UpsertTicketCategoryRequest): Promise<Object> {
+    const url = `${this.apiUrl}/manager/events/${eventId}/ticket-categories/${ticketCategoryId}`;
+    return firstValueFrom(this.http.put(url, {...upsertTicketCategoryRequest}));
   }
 
   async getEvent(eventId: string) {
