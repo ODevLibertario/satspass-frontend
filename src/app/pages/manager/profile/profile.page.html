@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="profileForm" (ngSubmit)="saveProfile()">
+    <ion-item class="item-has-value">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="input" value="{{user?.email}}" disabled="true"></ion-input>
+    </ion-item>
+    <ion-item class="item-has-value">
+      <ion-label position="floating">Nome de usuário</ion-label>
+      <ion-input type="input" value="{{user?.username}}" disabled="true"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Lightning address</ion-label>
+      <ion-input type="input" formControlName="lightningAddress" required></ion-input>
+    </ion-item>
+    <ion-text color="danger" *ngIf="profileForm.get('lightningAddress')?.touched && profileForm.get('lightningAddress')?.invalid" class="input-error">
+      <small *ngIf="profileForm.get('lightningAddress')?.errors?['email']: false">Entre um endereço lightning válido.</small>
+    </ion-text>
+
+    <ion-button expand="block" fill="clear" color="secondary" (click)="updatePassword()">TROCAR SENHA</ion-button>
+    <ion-button expand="block" type="submit" [disabled]="profileForm.invalid">SALVAR</ion-button>
+  </form>
+  <tabs [config]="managerTabs"></tabs>
+</ion-content>
+

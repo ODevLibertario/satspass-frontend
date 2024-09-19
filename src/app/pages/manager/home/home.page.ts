@@ -4,6 +4,13 @@ import {clamp} from "../../../../util/mathUtils";
 import {Event} from "../../../../model/Event";
 import {SatspassApiService} from "../../../../service/SatspassApiService";
 import {Platform} from "@ionic/angular";
+import {Tab} from "../../../../model/Tab";
+
+export const managerTabs = [
+  new Tab('Início', 'home', '/manager/home'),
+  new Tab('Validar', 'barcode', '/manager/home'),
+  new Tab('Perfil', 'person', '/manager/profile')
+]
 
 @Component({
   selector: 'app-home',
@@ -37,4 +44,5 @@ export class HomePage implements OnInit {
   }
 
   protected readonly Platform = Platform;
+  protected readonly managerTabs = managerTabs;
 }

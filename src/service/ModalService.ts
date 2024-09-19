@@ -12,7 +12,8 @@ export class ModalService {
 
   async wrapInLoading(action: () => Promise<any>,
                       successMessage: string | undefined = undefined,
-                      failureMessage: string | undefined = undefined,
+                      showBackendFailureMessage: boolean  = false,
+                      failureMessage: string | undefined = 'Erro inesperado :(',
                       failureAction: (() => Promise<any>) | undefined = undefined) {
     const loading = await this.loading()
     try{
@@ -20,8 +21,10 @@ export class ModalService {
       if(successMessage){
         await this.toast(successMessage)
       }
-    } catch (error) {
-      console.log(error)
+    } catch (error: any) {
+      if(showBackendFailureMessage) {
+        await this.toast(error?.error?.message ? error?.error?.message : failureMessage, 'danger')
+      }
       if(failureMessage){
         await this.toast(failureMessage, 'danger')
       }
@@ -33,7 +36,7 @@ export class ModalService {
     }
   }
 
-  private async toast(message: string, color = 'success', duration: number = 3000) {
+  async toast(message: string, color = 'success', duration: number = 3000) {
     const toast = await this.toastController.create({ message, duration, position: "bottom", color
     });
 

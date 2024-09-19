@@ -32,6 +32,7 @@ export class SignUpPage {
         return this.callSignUp();
       },
       'Bem vindo, um email com o código confirmação foi enviado',
+      false,
       'Falha ao cadastrar, tente novamente!')
   }
 

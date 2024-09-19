@@ -7,11 +7,17 @@ import {HomePage} from "./home/home.page";
 import {EventPage} from "./event/event.page";
 import {DateTimePickerComponent} from "../../components/date-time-picker/date-time-picker.component";
 import {TicketCategoryPage} from "./ticket-category/ticket-category.page";
+import {TabsComponent} from "../../components/tabs/tabs.component";
+import {ProfilePage} from "./profile/profile.page";
 
 const routes: Routes = [
   {
     path: 'home',
     component: HomePage
+  },
+  {
+    path: 'profile',
+    component: ProfilePage
   },
   {
     path: 'event',
@@ -37,6 +43,6 @@ const routes: Routes = [
     FormsModule, ReactiveFormsModule
   ],
   exports: [RouterModule],
-  declarations: [HomePage, EventPage, TicketCategoryPage, DateTimePickerComponent]
+  declarations: [HomePage, EventPage, TicketCategoryPage, DateTimePickerComponent, ProfilePage, TabsComponent]
 })
 export class ManagerModule {}

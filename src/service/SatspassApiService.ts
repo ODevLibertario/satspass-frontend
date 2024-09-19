@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {firstValueFrom, Observable} from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import {firstValueFrom} from 'rxjs';
 import {environment} from "../environments/environment";
 import {SignUpRequest} from "../model/SignUpRequest";
 import {UpsertEventRequest} from "../model/UpsertEventRequest";
 import {Event} from "../model/Event";
 import {UpsertTicketCategoryRequest} from "../model/UpsertTicketCategoryRequest";
+import {User} from "../model/User";
 
 @Injectable({
   providedIn: 'root',
@@ -84,5 +85,15 @@ export class SatspassApiService {
   deleteTicketCategory(eventId: string, ticketCategoryId: string) {
     const url = `${this.apiUrl}/manager/events/${eventId}/ticket-categories/${ticketCategoryId}`;
     return firstValueFrom(this.http.delete(url));
+  }
+
+  getUser() {
+    const url = `${this.apiUrl}/user`;
+    return firstValueFrom(this.http.get(url)) as Promise<User>;
+  }
+
+  updateLightningAddress(lightningAddress: string) {
+    const url = `${this.apiUrl}/user/lightning-address`;
+    return firstValueFrom(this.http.put(url, {lightningAddress}));
   }
 }

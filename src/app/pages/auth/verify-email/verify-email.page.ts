@@ -35,6 +35,7 @@ export class VerifyEmailPage {
         ])
 
       }, 'Email confirmado, realize o login.',
+      false,
       'Falha ao confirmar email, verifique o código.')
   }
 }

@@ -32,6 +32,7 @@ export class SignInPage {
          return this.callSignIn();
       },
       undefined,
+      false,
       'Falha ao realizar login, verifique seu email e senha'
     )
   }

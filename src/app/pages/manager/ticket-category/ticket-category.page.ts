@@ -6,6 +6,7 @@ import {ModalService} from "../../../../service/ModalService";
 import {UpsertTicketCategoryRequest} from "../../../../model/UpsertTicketCategoryRequest";
 import * as moment from "moment/moment";
 import {TicketCategory} from "../../../../model/TicketCategory";
+import {managerTabs} from "../home/home.page";
 
 @Component({
   selector: 'app-ticket-category',
@@ -37,7 +38,7 @@ export class TicketCategoryPage implements OnInit {
   async onSubmit() {
     await this.modalService.wrapInLoading(() => {
       return this.doSubmit()
-    }, 'Categoria adicionada com sucesso!', 'Falha ao adicionar categoria, tente novamente')
+    }, 'Categoria adicionada com sucesso!', false, 'Falha ao adicionar categoria, tente novamente')
   }
 
   async doSubmit(){
@@ -79,4 +80,6 @@ export class TicketCategoryPage implements OnInit {
       });
     }
   }
+
+  protected readonly managerTabs = managerTabs;
 }

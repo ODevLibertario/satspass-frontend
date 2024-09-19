@@ -6,10 +6,10 @@ import {ModalService} from "../../../../service/ModalService";
 import {DateTimePickerOuput} from "../../../components/date-time-picker/date-time-picker.component";
 import {UpsertEventRequest} from "../../../../model/UpsertEventRequest";
 import * as moment from "moment";
-import {Event, EventStatus} from "../../../../model/Event";
+import {Event} from "../../../../model/Event";
 import {AlertController} from "@ionic/angular";
-import {TicketCategoryPage} from "../ticket-category/ticket-category.page";
 import {TicketCategory} from "../../../../model/TicketCategory";
+import {managerTabs} from "../home/home.page";
 
 @Component({
   selector: 'app-event',
@@ -93,7 +93,7 @@ export class EventPage implements OnInit {
         } else {
           return this.callAddEvent()
         }
-      }, 'Evento salvo!', 'Falha ao salvar evento')
+      }, 'Evento salvo!', false, 'Falha ao salvar evento')
     }
   }
 
@@ -164,7 +164,7 @@ export class EventPage implements OnInit {
           handler: () => {
             this.modalService.wrapInLoading(() => {
               return this.satspassApiService.publishEvent(this.eventId!)
-            }).then(r => this.refreshEvent(this.eventId!))
+            }, undefined, true).then(r => this.refreshEvent(this.eventId!))
           },
         }, 'Não'],
 
@@ -184,7 +184,7 @@ export class EventPage implements OnInit {
           handler: () => {
             this.modalService.wrapInLoading(() => {
               return this.satspassApiService.deleteEvent(this.eventId!)
-            }, 'Evento removido com sucesso', 'Falha ao remover evento')
+            }, 'Evento removido com sucesso', false, 'Falha ao remover evento')
               .then(r => this.navigateToHome())
           },
         }, 'Não'],
@@ -205,7 +205,7 @@ export class EventPage implements OnInit {
           handler: () => {
             this.modalService.wrapInLoading(() => {
               return this.satspassApiService.deleteTicketCategory(this.eventId!, ticketCategoryId)
-            }, 'Categoria removida com sucesso', 'Falha ao remover categoria')
+            }, 'Categoria removida com sucesso', false, 'Falha ao remover categoria')
               .then(r => this.refreshEvent(this.eventId!))
           },
         }, 'Não'],
@@ -215,4 +215,6 @@ export class EventPage implements OnInit {
 
     await alert.present()
   }
+
+  protected readonly managerTabs = managerTabs;
 }

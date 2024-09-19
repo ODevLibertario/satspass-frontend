@@ -35,6 +35,7 @@ export class ResetPasswordPage {
       )
     },
       'Sua nova senha foi enviada para o e-mail cadastrado!',
+      false,
       'Falha ao resetar senha, confira o email cadastrado',
       wrapInPromise( () => this.resetPasswordForm.reset())
     )
