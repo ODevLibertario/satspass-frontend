@@ -147,6 +147,50 @@
           </ion-item>
         </ion-col>
       </ion-row>
+
+      <ion-row *ngIf="ticketStatistics && ticketStatistics.length > 0">
+        <ion-col class="center-content">
+          <ion-item>
+            <ion-label position="floating" class="label">Vendas</ion-label>
+            <ion-grid style="width: 100%">
+              <ion-row class="separator">
+                <ion-col>
+                  Categoria
+                </ion-col>
+                <ion-col>
+                  Qtd. Total
+                </ion-col>
+                <ion-col>
+                  Qtd. Vendida
+                </ion-col>
+                <ion-col>
+                  Preço
+                </ion-col>
+                <ion-col>
+                  Valor total
+                </ion-col>
+              </ion-row>
+              <ion-row *ngFor="let statistics of ticketStatistics">
+                <ion-col>
+                  {{ statistics.categoryName }}
+                </ion-col>
+                <ion-col>
+                  {{ statistics.quantity }}
+                </ion-col>
+                <ion-col>
+                  {{ statistics.soldCount }}
+                </ion-col>
+                <ion-col>
+                  {{ statistics.price }}
+                </ion-col>
+                <ion-col>
+                  {{ statistics.totalValue }}
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+        </ion-col>
+      </ion-row>
     </ion-grid>
 
     <ion-button expand="block"  [disabled]="!eventId || event?.eventStatus === 'PUBLISHED'" (click)="deleteEvent()" class="hidden-on-disable" color="danger">REMOVER EVENTO</ion-button>

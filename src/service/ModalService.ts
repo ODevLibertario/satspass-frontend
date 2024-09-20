@@ -13,7 +13,7 @@ export class ModalService {
   async wrapInLoading(action: () => Promise<any>,
                       successMessage: string | undefined = undefined,
                       showBackendFailureMessage: boolean  = false,
-                      failureMessage: string | undefined = 'Erro inesperado :(',
+                      failureMessage: string = 'Erro inesperado :(',
                       failureAction: (() => Promise<any>) | undefined = undefined) {
     const loading = await this.loading()
     try{
@@ -24,8 +24,7 @@ export class ModalService {
     } catch (error: any) {
       if(showBackendFailureMessage) {
         await this.toast(error?.error?.message ? error?.error?.message : failureMessage, 'danger')
-      }
-      if(failureMessage){
+      } else if(failureMessage){
         await this.toast(failureMessage, 'danger')
       }
       if(failureAction){

@@ -7,6 +7,7 @@ import {UpsertEventRequest} from "../model/UpsertEventRequest";
 import {Event} from "../model/Event";
 import {UpsertTicketCategoryRequest} from "../model/UpsertTicketCategoryRequest";
 import {User} from "../model/User";
+import {TicketStatistics} from "../model/TicketStatistics";
 
 @Injectable({
   providedIn: 'root',
@@ -70,6 +71,11 @@ export class SatspassApiService {
   async getEvent(eventId: string) {
     const url = `${this.apiUrl}/manager/events/${eventId}`;
     return firstValueFrom(this.http.get(url)) as Promise<Event>;
+  }
+
+  async getEventStatistics(eventId: string) {
+    const url = `${this.apiUrl}/manager/events/${eventId}/statistics`;
+    return firstValueFrom(this.http.get(url)) as Promise<TicketStatistics[]>;
   }
 
   async publishEvent(eventId: string) {

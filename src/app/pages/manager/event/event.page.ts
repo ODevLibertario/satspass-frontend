@@ -10,6 +10,7 @@ import {Event} from "../../../../model/Event";
 import {AlertController} from "@ionic/angular";
 import {TicketCategory} from "../../../../model/TicketCategory";
 import {managerTabs} from "../home/home.page";
+import {TicketStatistics} from "../../../../model/TicketStatistics";
 
 @Component({
   selector: 'app-event',
@@ -29,6 +30,7 @@ export class EventPage implements OnInit {
   startTimeInitialValue: Date | undefined;
   endTime: DateTimePickerOuput | undefined;
   endTimeInitialValue: Date | undefined;
+  ticketStatistics: TicketStatistics[] | undefined;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -68,6 +70,9 @@ export class EventPage implements OnInit {
     this.event = await this.satspassApiService.getEvent(this.eventId)
     if (this.event) {
       this.setEvent(this.event);
+    }
+    if(this.event.eventStatus === 'PUBLISHED') {
+      this.ticketStatistics = await this.satspassApiService.getEventStatistics(this.eventId)
     }
   }
 
