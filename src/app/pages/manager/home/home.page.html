@@ -22,7 +22,7 @@
     </swiper-slide>
     <swiper-slide *ngFor="let event of events">
       <ion-card class="event-card" (click)="navigateToEvent(event)" >
-        <ion-card-content class="custom-background" [style.backgroundImage]="'url(' + event.publicityImageUrl + ')'">
+        <ion-card-content class="custom-background" [style.backgroundImage]="event.publicityImageUrl ? 'url(' + event.publicityImageUrl + ')' : 'url(/assets/x-default-event-photo.jpg)'">
           <ion-grid class="text-container">
             <ion-row>
               <ion-col class="alignment1">
@@ -30,6 +30,9 @@
               </ion-col>
             </ion-row>
             <ion-row>
+              <ion-col class="alignment2">
+                <div class="text-item">{{ event?.startDate | date:'dd/MM/yyyy' }}</div>
+              </ion-col>
               <ion-col class="alignment2">
                 <div class="text-item">{{ event?.endDate | date:'dd/MM/yyyy' }}</div>
               </ion-col>

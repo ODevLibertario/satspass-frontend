@@ -102,4 +102,9 @@ export class SatspassApiService {
     const url = `${this.apiUrl}/user/lightning-address`;
     return firstValueFrom(this.http.put(url, {lightningAddress}));
   }
+
+  updatePassword(updatePasswordRequest: {email: string, oldPassword: string; newPassword: string}) {
+    const url = `${this.apiUrl}/user/password`;
+    return firstValueFrom(this.http.put(url, updatePasswordRequest));
+  }
 }

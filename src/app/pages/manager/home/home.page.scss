@@ -12,3 +12,29 @@ swiper-container {
 .plus {
   font-size: 100px;
 }
+
+.text-item {
+  white-space: normal;
+  font-weight: bolder;
+  font-family: Verdana, sans-serif;
+  text-shadow: 2px 2px 5px #c17308; /* Horizontal, Vertical, Blur, Color */
+  color: white; /* Cor do texto */
+  font-size: 24px; /* Ajuste conforme necessário */
+  padding: 0px; /* Espaço interno ao redor do texto */
+  border-radius: 5px; /* Arredondamento dos cantos */
+  margin-bottom: 10px; /* Espaçamento entre os itens de texto */
+  display: inline-block; /* Ajusta o tamanho do fundo ao texto */
+}
+
+.custom-background {
+  background-size: 100% 100%; /* Faz com que a imagem cubra o elemento */
+  background-position: center; /* Centraliza a imagem */
+  background-repeat: no-repeat; /* Evita que a imagem se repita */
+  width: 100%;
+  padding-left: 0px;
+  padding-right: 0px;
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+  max-width: 250px;
+}

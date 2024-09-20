@@ -66,6 +66,7 @@ ion-content {
   ion-button {
     margin-top: 20px;
     min-width: 80%;
+    z-index: 10000;
   }
 }
 

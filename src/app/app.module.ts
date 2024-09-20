@@ -13,10 +13,11 @@ import {HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi} from "@ang
 import {HttpAuthInterceptorService} from "../interceptors/http.auth.interceptor";
 import {ModalService} from "../service/ModalService";
 import {IonicStorageModule} from "@ionic/storage-angular";
+import {ChangePasswordPage} from "./pages/change-password/change-password.page";
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [AppComponent, LandingPage],
+  declarations: [AppComponent, LandingPage, ChangePasswordPage],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),

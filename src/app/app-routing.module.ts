@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import {SignUpPage} from "./pages/auth/sign-up/sign-up.page";
 import {LandingPage} from "./pages/landing/landing.page";
+import {ChangePasswordPage} from "./pages/change-password/change-password.page";
 
 const routes: Routes = [
   {
@@ -19,6 +19,10 @@ const routes: Routes = [
   {
     path: '',
     component: LandingPage
+  },
+  {
+    path: 'user/change-password',
+    component: ChangePasswordPage
   }
 ];
 @NgModule({

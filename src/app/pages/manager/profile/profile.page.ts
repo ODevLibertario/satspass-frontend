@@ -34,7 +34,7 @@ export class ProfilePage implements OnInit {
   }
 
   updatePassword() {
-
+    this.router.navigate(["/user/change-password"], {queryParams: {email: this.user!.email}})
   }
 
   async saveProfile() {
