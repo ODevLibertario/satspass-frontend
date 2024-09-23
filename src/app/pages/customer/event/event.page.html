@@ -19,7 +19,7 @@
     <ion-grid>
       <ion-row>
         <ion-col class="color-colum2">Dia(s)</ion-col>
-        <ion-col class="color-colum"> - {{event?.endDate |  date:'dd/MM/yyyy'}}</ion-col>
+        <ion-col class="color-colum">{{event?.startDate |  date:'dd/MM/yyyy'}} - {{event?.endDate |  date:'dd/MM/yyyy'}}</ion-col>
       </ion-row>
     </ion-grid>
     <div class="divider-line"></div>
@@ -32,7 +32,30 @@
 
     <br>
     <p class="border">{{event?.description}}</p>
+
+      <div>
+        <p class="categ" >escolha seus ingressos: </p>
+      </div>
+
+
+      <ion-grid class="numeric-spin">
+        <ion-row *ngFor="let ticketCategory of ticketCategories">
+          <ion-col class="event-categ">{{ ticketCategory.categoryName}} - {{ticketCategory.price}}</ion-col>
+          <ion-col class="quantity">
+            <div class="cont-btn">
+              <ion-button class="btn" (click)="decrease()">-</ion-button>
+              <div class="contador"><h2>{{ value }}</h2></div>
+              <ion-button class="btn" (click)="increase()">+</ion-button>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+
     </ion-text><br>
+
+
+
 
   <ion-button expand="block">Comprar</ion-button>
 
