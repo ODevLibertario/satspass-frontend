@@ -1,80 +1,33 @@
-.swiper {
-  width: 100%;
-  height: 350px; /* Define uma altura fixa */
+.event-card {
+  width: 85% !important;
+  max-width: 250px;
+  cursor: pointer;
+  height: 300px;
+  margin-bottom: 40px;
 }
-.my-swiper {
-  margin-top: -50px; /* Remove a margem superior do Swiper */
-  padding-top: 0;
-  width: 100%;
-  height: 300px; /* Ajuste a altura conforme necessário */
-}
-p{
-  margin-bottom: -50px;
-  padding-left: 0px;
-  font-size: 30px;
-  color: white;
-}
-.events{
-  margin-left: 10%;
-}
-.event-card{
-  width: 145px;
-  height: 165px;
-}
-.event-details{
-  font-size: 20px;
+
+.text-item {
+  white-space: normal;
+  font-weight: bolder;
+  font-family: Verdana, sans-serif;
+  text-shadow: 2px 2px 5px #c17308; /* Horizontal, Vertical, Blur, Color */
+  color: white; /* Cor do texto */
+  font-size: 20px; /* Ajuste conforme necessário */
+  padding-top: 10px; /* Espaço interno ao redor do texto */
+  border-radius: 5px; /* Arredondamento dos cantos */
+  margin-bottom: 10px; /* Espaçamento entre os itens de texto */
+  display: inline-block; /* Ajusta o tamanho do fundo ao texto */
 }
 
 .custom-background {
   background-size: 100% 100%; /* Faz com que a imagem cubra o elemento */
   background-position: center; /* Centraliza a imagem */
   background-repeat: no-repeat; /* Evita que a imagem se repita */
-  height: 200px; /* Define uma altura para o card, se necessário */
   width: 100%;
-  background-image: url(https://cdn.ibahia.com/img/inline/300000/1200x720/Bruno-Mars-movimenta-redes-sociais-ao-vestir-camis0030442…-9.webp?fallback=https%3A%2F%2Fcdn.ibahia.com%2Fimg%2Finline%2F300000%2FBruno-Mars-movimenta-redes-sociais-ao-vestir-camis0030442….jpg);
   padding-left: 0px;
   padding-right: 0px;
   display: flex;
   align-items: flex-end;
+  height: 100%;
+  max-width: 250px;
 }
-.text-container {
-  height: 54px;
-  width: 100%;
-  padding: 0px; /* Espaço interno */
-}
-
-.text-item {
-  white-space: nowrap;
-  background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
-  color: white; /* Cor do texto */
-  font-size: 16px; /* Ajuste conforme necessário */
-  padding: 0px; /* Espaço interno ao redor do texto */
-  border-radius: 5px; /* Arredondamento dos cantos */
-  margin-bottom: 10px; /* Espaçamento entre os itens de texto */
-  display: inline-block; /* Ajusta o tamanho do fundo ao texto */
-}
-.alignment1{
-  width: 85%;
-}
-.alignment2{
-  width: 85%;
-}
-.alignment3{
-  width: 85%;
-}
-
-ion-row{
-  margin: -20px; /* Remove o padding padrão para evitar espaços extras */
-}
-ion-col{
-  padding: 0px;
-}
-
-
-
-
-
-
-
-
-

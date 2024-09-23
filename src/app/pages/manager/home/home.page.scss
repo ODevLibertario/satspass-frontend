@@ -1,12 +1,9 @@
 .event-card {
     width: 85% !important;
     max-width: 250px;
-    height: 80%;
     cursor: pointer;
-}
-
-swiper-container {
-  height: 45%;
+    height: 300px;
+  margin-bottom: 40px;
 }
 
 .plus {
@@ -19,8 +16,8 @@ swiper-container {
   font-family: Verdana, sans-serif;
   text-shadow: 2px 2px 5px #c17308; /* Horizontal, Vertical, Blur, Color */
   color: white; /* Cor do texto */
-  font-size: 24px; /* Ajuste conforme necessário */
-  padding: 0px; /* Espaço interno ao redor do texto */
+  font-size: 20px; /* Ajuste conforme necessário */
+  padding-top: 10px; /* Espaço interno ao redor do texto */
   border-radius: 5px; /* Arredondamento dos cantos */
   margin-bottom: 10px; /* Espaçamento entre os itens de texto */
   display: inline-block; /* Ajusta o tamanho do fundo ao texto */

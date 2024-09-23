@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {SatspassApiService} from "../../../../service/SatspassApiService";
 import {Event} from "../../../../model/Event";
 import {clamp} from "../../../../util/mathUtils";
+import {Platform} from "@ionic/angular";
 
 @Component({
   selector: 'app-home',
@@ -11,10 +12,12 @@ import {clamp} from "../../../../util/mathUtils";
 })
 export class HomePage implements OnInit {
   events: Event[] = []
-  constructor(private router: Router, private satspassApiService: SatspassApiService) { }
+  constructor(private router: Router, private satspassApiService: SatspassApiService, protected platform: Platform) { }
 
-  navigateToEvent() {
-    this.router.navigate(['/customer/event']);
+  navigateToEvent(event: Event) {
+    this.router.navigate(['/customer/event'], {
+      state: event
+    });
   }
 
   ngOnInit() {
