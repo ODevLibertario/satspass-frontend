@@ -6,12 +6,12 @@
 
 <ion-content [fullscreen]="true">
   <form>
-  <img [src]="event?.publicityImageUrl" class="imagem-event" alt="teste">
+  <div class="image-event" [style.backgroundImage]="event!.publicityImageUrl ? 'url(' + event!.publicityImageUrl + ')' : 'url(/assets/x-default-event-photo.jpg)'"></div>
     <ion-text class="teste">
     <p class="border"> {{event?.name}}</p><br>
     <ion-grid>
       <ion-row>
-        <ion-col class="color-colum2">Local: </ion-col>
+        <ion-col class="color-colum2" *ngIf="event?.location">Local: </ion-col>
         <ion-col class="color-colum">{{event?.location}}</ion-col>
       </ion-row>
     </ion-grid>
@@ -19,13 +19,13 @@
     <ion-grid>
       <ion-row>
         <ion-col class="color-colum2">Dia(s)</ion-col>
-        <ion-col class="color-colum"> - {{event?.endDate |  date:'dd/MM/yyyy'}}</ion-col>
+        <ion-col class="color-colum">{{event?.startDate |  date:'dd/MM/yyyy'}} - {{event?.endDate |  date:'dd/MM/yyyy'}}</ion-col>
       </ion-row>
     </ion-grid>
     <div class="divider-line"></div>
     <ion-grid>
       <ion-row>
-        <ion-col class="color-colum2">Horas</ion-col>
+        <ion-col class="color-colum2">Horários</ion-col>
         <ion-col class="color-colum">{{ event?.startTime | date: 'HH:hh' }} - {{ event?.endDate | date: 'HH:hh' }}</ion-col>
       </ion-row>
     </ion-grid>
@@ -34,7 +34,7 @@
     <p class="border">{{event?.description}}</p>
     </ion-text><br>
 
-  <ion-button expand="block">Comprar</ion-button>
+  <ion-button expand="block" style="margin-bottom: 3%">Comprar</ion-button>
 
   </form>
 

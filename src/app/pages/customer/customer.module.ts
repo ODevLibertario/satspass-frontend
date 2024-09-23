@@ -5,6 +5,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {IonicModule} from "@ionic/angular";
 import {HomePage} from "./home/home.page";
 import { EventPage } from './event/event.page';
+import {TabsComponent} from "../../components/tabs/tabs.component";
+import {ComponentsModule} from "../../components/components.module";
 
 const routes: Routes = [
   {
@@ -24,7 +26,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    FormsModule, ReactiveFormsModule
+    FormsModule, ReactiveFormsModule,
+    ComponentsModule
   ],
   exports: [RouterModule],
   declarations: [HomePage, EventPage]

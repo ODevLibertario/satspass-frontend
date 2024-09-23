@@ -9,6 +9,7 @@ import {DateTimePickerComponent} from "../../components/date-time-picker/date-ti
 import {TicketCategoryPage} from "./ticket-category/ticket-category.page";
 import {TabsComponent} from "../../components/tabs/tabs.component";
 import {ProfilePage} from "./profile/profile.page";
+import {ComponentsModule} from "../../components/components.module";
 
 const routes: Routes = [
   {
@@ -40,9 +41,11 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    FormsModule, ReactiveFormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    ComponentsModule
   ],
   exports: [RouterModule],
-  declarations: [HomePage, EventPage, TicketCategoryPage, DateTimePickerComponent, ProfilePage, TabsComponent]
+  declarations: [HomePage, EventPage, TicketCategoryPage, ProfilePage]
 })
 export class ManagerModule {}

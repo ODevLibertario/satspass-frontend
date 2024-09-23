@@ -4,6 +4,13 @@ import {SatspassApiService} from "../../../../service/SatspassApiService";
 import {Event} from "../../../../model/Event";
 import {clamp} from "../../../../util/mathUtils";
 import {Platform} from "@ionic/angular";
+import {Tab} from "../../../../model/Tab";
+
+export const customerTabs = [
+  new Tab('Início', 'home', '/customer/home'),
+  new Tab('Ingressos', 'pricetag', '/customer/tickets'),
+  new Tab('Perfil', 'person', '/customer/profile')
+]
 
 @Component({
   selector: 'app-home',
@@ -27,4 +34,5 @@ export class HomePage implements OnInit {
   }
 
   protected readonly clamp = clamp;
+  protected readonly customerTabs = customerTabs;
 }

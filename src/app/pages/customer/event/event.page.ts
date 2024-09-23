@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {SatspassApiService} from "../../../../service/SatspassApiService";
 import {Event} from "../../../../model/Event";
+import {TicketCategory} from "../../../../model/TicketCategory";
+import {Router} from "@angular/router";
+import {ModalService} from "../../../../service/ModalService";
 
 @Component({
   selector: 'app-event',
@@ -10,16 +13,18 @@ import {Event} from "../../../../model/Event";
 export class EventPage implements OnInit {
   event: Event | undefined = undefined;
 
-  constructor(private satspassApiService: SatspassApiService) {
+  constructor(
+    private satspassApiService: SatspassApiService,
+    private router: Router,
+    private modalService: ModalService) {
 
-    }
+  }
 
 
 
   ngOnInit() {
-    this.satspassApiService.getCustomerEvents().then(r => {
-      this.event = r[0]
-    })
+    const navigation = this.router.getCurrentNavigation();
+    this.event = navigation?.extras.state as Event;
   }
 
 }
