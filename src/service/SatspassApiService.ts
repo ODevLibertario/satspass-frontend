@@ -8,6 +8,7 @@ import {Event} from "../model/Event";
 import {UpsertTicketCategoryRequest} from "../model/UpsertTicketCategoryRequest";
 import {User} from "../model/User";
 import {TicketStatistics} from "../model/TicketStatistics";
+import {SelectedTicket} from "../model/SelectedTicket";
 
 @Injectable({
   providedIn: 'root',
@@ -106,5 +107,10 @@ export class SatspassApiService {
   updatePassword(updatePasswordRequest: {email: string, oldPassword: string; newPassword: string}) {
     const url = `${this.apiUrl}/user/password`;
     return firstValueFrom(this.http.put(url, updatePasswordRequest));
+  }
+
+  buyTickets(eventId: string, selectedTickets: SelectedTicket[]) {
+    const url = `${this.apiUrl}/customer/events/${eventId}/buy-tickets`;
+    return firstValueFrom(this.http.post(url, selectedTickets.map(t => ({ticketCategoryId: t.ticketCategory.id, count: t.count}))));
   }
 }

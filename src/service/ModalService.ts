@@ -17,10 +17,11 @@ export class ModalService {
                       failureAction: (() => Promise<any>) | undefined = undefined) {
     const loading = await this.loading()
     try{
-      await action()
+      const result = await action()
       if(successMessage){
         await this.toast(successMessage)
       }
+      return result
     } catch (error: any) {
       if(showBackendFailureMessage) {
         await this.toast(error?.error?.message ? error?.error?.message : failureMessage, 'danger')

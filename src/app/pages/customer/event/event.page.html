@@ -32,11 +32,44 @@
 
     <br>
     <p class="border">{{event?.description}}</p>
+      <div>
+        <p class="categ" >Escolha seus ingressos: </p>
+      </div>
+      <ion-grid class="numeric-spin">
+        <ion-row *ngFor="let selectedTicket of selectedTickets">
+          <ion-col class="event-categ">{{ selectedTicket.ticketCategory.categoryName}} ({{selectedTicket.ticketCategory.price}} sats)</ion-col>
+          <ion-col class="quantity">
+            <div class="cont-btn">
+              <ion-button class="btn" (click)="decrease(selectedTicket)">-</ion-button>
+              <div class="contador"><h2>{{ selectedTicket.count }}</h2></div>
+              <ion-button class="btn" (click)="increase(selectedTicket)">+</ion-button>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
     </ion-text><br>
 
-  <ion-button expand="block" style="margin-bottom: 3%">Comprar</ion-button>
+  <ion-button expand="block" [disabled]="getTotalPrice() === 0" (click)="buy()" style="margin-bottom: 3%">Comprar por {{getTotalPrice()}} sats</ion-button>
 
   </form>
-
-
+  <ion-modal [isOpen]="isModalOpen">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title>Invoice - {{getTotalPrice()}} sats</ion-title>
+          <ion-buttons slot="end">
+            <ion-button expand="block" style="color: #e41f1f; font-weight: bolder;" (click)="closeModal()">Fechar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <qrcode style="display: flex;justify-content: center;margin: 20px" [qrdata]="invoice!" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+        <ion-text style="color: #ffd100;">* O pagamento será confirmado em até 5 minutos, verifique na tela de ingressos</ion-text>
+        <ion-button expand="block" (click)="copyToClipboard()">Copiar o texto</ion-button>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>
+<tabs [config]="customerTabs"></tabs>
+

@@ -197,6 +197,6 @@
     <ion-button expand="block"  [disabled]="!eventId || event?.eventStatus === 'PUBLISHED'" (click)="navigateToTicketCategory()" class="hidden-on-disable">ADICIONAR CATEGORIA</ion-button>
     <ion-button expand="block"  [disabled]="!eventId || eventForm.invalid || event?.eventStatus === 'PUBLISHED'" (click)="publishEvent()" class="hidden-on-disable">PUBLICAR EVENTO</ion-button>
     <ion-button expand="block"  [disabled]="event?.eventStatus === 'PUBLISHED' || eventForm.invalid || !startDate?.valid || !endDate?.valid || !startTime?.valid || !endTime?.valid" (click)="onSubmit()">{{event ? 'ATUALIZAR' : 'CRIAR'}} EVENTO</ion-button>
-    <ion-button expand="block" color="secondary" (click)="navigateToHome()">Voltar</ion-button>
   </form>
 </ion-content>
+<tabs [config]="managerTabs"></tabs>

@@ -5,8 +5,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {IonicModule} from "@ionic/angular";
 import {HomePage} from "./home/home.page";
 import { EventPage } from './event/event.page';
-import {TabsComponent} from "../../components/tabs/tabs.component";
 import {ComponentsModule} from "../../components/components.module";
+import {QRCodeModule} from "angularx-qrcode";
 
 const routes: Routes = [
   {
@@ -27,7 +27,8 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     FormsModule, ReactiveFormsModule,
-    ComponentsModule
+    ComponentsModule,
+    QRCodeModule
   ],
   exports: [RouterModule],
   declarations: [HomePage, EventPage]
