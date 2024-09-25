@@ -9,6 +9,7 @@ import {UpsertTicketCategoryRequest} from "../model/UpsertTicketCategoryRequest"
 import {User} from "../model/User";
 import {TicketStatistics} from "../model/TicketStatistics";
 import {SelectedTicket} from "../model/SelectedTicket";
+import {Ticket} from "../model/Ticket";
 
 @Injectable({
   providedIn: 'root',
@@ -112,5 +113,10 @@ export class SatspassApiService {
   buyTickets(eventId: string, selectedTickets: SelectedTicket[]) {
     const url = `${this.apiUrl}/customer/events/${eventId}/buy-tickets`;
     return firstValueFrom(this.http.post(url, selectedTickets.map(t => ({ticketCategoryId: t.ticketCategory.id, count: t.count}))));
+  }
+
+  getTickets() {
+    const url = `${this.apiUrl}/customer/tickets`;
+    return firstValueFrom(this.http.get(url)) as Promise<Ticket[]>;
   }
 }

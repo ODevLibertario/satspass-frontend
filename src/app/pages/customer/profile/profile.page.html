@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form>
+    <ion-item class="item-has-value">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="input" value="{{user?.email}}" disabled="true"></ion-input>
+    </ion-item>
+    <ion-item class="item-has-value">
+      <ion-label position="floating">Nome de usuário</ion-label>
+      <ion-input type="input" value="{{user?.username}}" disabled="true"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" fill="clear" color="secondary" (click)="updatePassword()">TROCAR SENHA</ion-button>
+  </form>
+</ion-content>
+<tabs [config]="customerTabs"></tabs>
+

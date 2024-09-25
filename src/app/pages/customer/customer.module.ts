@@ -6,7 +6,8 @@ import {IonicModule} from "@ionic/angular";
 import {HomePage} from "./home/home.page";
 import { EventPage } from './event/event.page';
 import {ComponentsModule} from "../../components/components.module";
-import {QRCodeModule} from "angularx-qrcode";
+import {ProfilePage} from "./profile/profile.page";
+import {TicketsPage} from "./tickets/tickets.page";
 
 const routes: Routes = [
   {
@@ -16,6 +17,14 @@ const routes: Routes = [
   {
     path: 'event',
     component: EventPage
+  },
+  {
+    path: 'profile',
+    component: ProfilePage
+  },
+  {
+    path: 'tickets',
+    component: TicketsPage
   }
 ];
 
@@ -27,10 +36,9 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     FormsModule, ReactiveFormsModule,
-    ComponentsModule,
-    QRCodeModule
+    ComponentsModule
   ],
   exports: [RouterModule],
-  declarations: [HomePage, EventPage]
+  declarations: [HomePage, EventPage, ProfilePage, TicketsPage]
 })
 export class CustomerModule {}

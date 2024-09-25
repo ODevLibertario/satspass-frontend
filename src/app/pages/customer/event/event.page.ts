@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {SatspassApiService} from "../../../../service/SatspassApiService";
 import {Event} from "../../../../model/Event";
 import {Router} from "@angular/router";
 import {ModalService} from "../../../../service/ModalService";
 import {SelectedTicket} from "../../../../model/SelectedTicket";
-import { Clipboard } from '@capacitor/clipboard';
 import {customerTabs} from "../home/home.page";
+import {QrCodeModalComponent} from "../../../components/qr-code-modal/qr-code-modal.component";
 
 @Component({
   selector: 'app-event',
@@ -18,6 +18,9 @@ export class EventPage implements OnInit {
   selectedTickets: SelectedTicket[] = [];
   invoice: string | undefined;
   isModalOpen: boolean = false;
+
+  @ViewChild(QrCodeModalComponent)
+  modal: QrCodeModalComponent | undefined;
 
   constructor(
     private satspassApiService: SatspassApiService,
@@ -57,18 +60,7 @@ export class EventPage implements OnInit {
       false,
       'Falha ao gerar invoice')).invoice
 
-    this.isModalOpen = true;
-  }
-
-  closeModal() {
-    this.isModalOpen = false;
-  }
-
-  async copyToClipboard() {
-    await Clipboard.write({
-      string: this.invoice
-    })
-    await this.modalService.toast('Invoice copiada com sucesso!')
+    this.modal?.open()
   }
 
   protected readonly customerTabs = customerTabs;

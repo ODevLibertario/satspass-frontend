@@ -5,9 +5,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {IonicModule} from "@ionic/angular";
 import {HomePage} from "./home/home.page";
 import {EventPage} from "./event/event.page";
-import {DateTimePickerComponent} from "../../components/date-time-picker/date-time-picker.component";
 import {TicketCategoryPage} from "./ticket-category/ticket-category.page";
-import {TabsComponent} from "../../components/tabs/tabs.component";
 import {ProfilePage} from "./profile/profile.page";
 import {ComponentsModule} from "../../components/components.module";
 

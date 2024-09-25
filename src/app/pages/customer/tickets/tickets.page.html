@@ -1,0 +1,30 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Ingressos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list [inset]="true">
+    <ion-item *ngIf="tickets?.length === 0">
+      <ion-label>Você ainda não tem nenhum ingresso.</ion-label>
+    </ion-item>
+    <ion-item *ngFor="let ticket of tickets">
+      <ion-grid>
+        <ion-row>
+          <ion-col style="display: flex; align-items: center; justify-content: space-evenly">{{ticket.eventName}} - {{ticket.categoryName}}</ion-col>
+          <ion-col style="display: flex; align-items: center; justify-content: space-evenly">{{ticket.eventStartDate | date:'dd/MM/yyyy' }}</ion-col>
+          <ion-col style="display: flex; align-items: center; justify-content: space-around;">
+              <ion-icon *ngIf="ticket.ticketStatus === 'RESERVED'" title="Pendente" style="font-size: 24px; color: rgba(255,180,0,0.91)" name="warning"></ion-icon>
+              <ion-icon *ngIf="ticket.ticketStatus === 'PURCHASED'" title="Comprado" style="font-size: 24px; color: rgba(4,200,6,0.91)" name="checkbox"></ion-icon>
+          </ion-col>
+          <ion-col *ngIf="ticket.ticketStatus === 'RESERVED'" style="display: flex; align-items: center; justify-content: space-evenly"><ion-button color="secondary"  style="margin-top: 0" (click)="showInvoice(ticket)" )>INVOICE</ion-button></ion-col>
+          <ion-col *ngIf="ticket.ticketStatus === 'PURCHASED'" style="display: flex; align-items: center; justify-content: space-evenly"><ion-button color="secondary"  style="margin-top: 0" (click)="showQrCode(ticket)">QR CODE</ion-button></ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+</ion-content>
+<tabs [config]="customerTabs"></tabs>
+<qr-code-modal></qr-code-modal>
+
