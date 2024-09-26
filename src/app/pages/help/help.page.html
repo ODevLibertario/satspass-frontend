@@ -1,0 +1,19 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Suporte</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card style="display: flex;flex-direction: column;align-items: center;margin: 3%; padding: 3%">
+      <ion-grid>
+        <ion-row>
+          <h4>Teve algum problema? Tem algum sugestão? Entre em contato por email, responderemos o mais rápido possível</h4>
+        </ion-row>
+        <ion-row style="justify-content: center;padding: 2%">
+          <a href="mailto:satspass@proton.me"><ion-text style="font-size: 34px">{{'satspass@proton.me'}}</ion-text></a>
+        </ion-row>
+      </ion-grid>
+      <ion-button style="width: 85%" (click)="back()">VOLTAR</ion-button>
+  </ion-card>
+</ion-content>

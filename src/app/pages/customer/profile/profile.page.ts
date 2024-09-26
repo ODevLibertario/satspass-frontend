@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {SatspassApiService} from "../../../../service/SatspassApiService";
 import {User} from "../../../../model/User";
-import {ModalService} from "../../../../service/ModalService";
 import {Router} from "@angular/router";
 import {customerTabs} from "../home/home.page";
+import {Storage} from "@ionic/storage";
 
 @Component({
   selector: 'app-profile',
@@ -17,7 +17,7 @@ export class ProfilePage implements OnInit {
   constructor(
     private router: Router,
     private satspassApiService: SatspassApiService,
-    private modalService: ModalService
+    private storage: Storage
   ) {
 
   }
@@ -33,4 +33,10 @@ export class ProfilePage implements OnInit {
   }
 
   protected readonly customerTabs = customerTabs;
+
+  logOut() {
+    this.storage.set('token', undefined)
+    this.storage.set('role', undefined)
+    this.router.navigate(["/"])
+  }
 }

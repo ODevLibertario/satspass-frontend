@@ -1,7 +1,8 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import {LandingPage} from "./pages/landing/landing.page";
 import {ChangePasswordPage} from "./pages/change-password/change-password.page";
+import {HelpPage} from "./pages/help/help.page";
 
 const routes: Routes = [
   {
@@ -15,6 +16,10 @@ const routes: Routes = [
   {
     path: 'manager',
     loadChildren: () => import('./pages/manager/manager.module').then(m => m.ManagerModule)
+  },
+  {
+    path: 'help',
+    component: HelpPage
   },
   {
     path: '',

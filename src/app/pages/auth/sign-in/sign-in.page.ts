@@ -57,8 +57,4 @@ export class SignInPage {
     }
     return undefined
   }
-
-  resetPassword() {
-    this.router.navigate(['/auth/reset-password']);
-  }
 }

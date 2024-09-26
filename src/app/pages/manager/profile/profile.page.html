@@ -23,7 +23,9 @@
     </ion-text>
 
     <ion-button expand="block" fill="clear" color="secondary" (click)="updatePassword()">TROCAR SENHA</ion-button>
+    <ion-button expand="block" style="--background: #0056ee;" routerLink="/help">SUPORTE</ion-button>
     <ion-button expand="block" type="submit" [disabled]="profileForm.invalid">SALVAR</ion-button>
+    <ion-button expand="block" color="danger" (click)="logOut()">Sair</ion-button>
   </form>
 </ion-content>
 <tabs [config]="managerTabs"></tabs>
