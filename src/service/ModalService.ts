@@ -23,6 +23,7 @@ export class ModalService {
       }
       return result
     } catch (error: any) {
+      console.log(error)
       if(showBackendFailureMessage) {
         await this.toast(error?.error?.message ? error?.error?.message : failureMessage, 'danger')
       } else if(failureMessage){

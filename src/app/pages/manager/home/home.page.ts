@@ -8,7 +8,7 @@ import {Tab} from "../../../../model/Tab";
 
 export const managerTabs = [
   new Tab('Início', 'home', '/manager/home'),
-  new Tab('Validar', 'barcode', '/manager/home'),
+  new Tab('Validar', 'barcode', '/manager/validate-ticket'),
   new Tab('Perfil', 'person', '/manager/profile')
 ]
 

@@ -8,6 +8,7 @@ import {EventPage} from "./event/event.page";
 import {TicketCategoryPage} from "./ticket-category/ticket-category.page";
 import {ProfilePage} from "./profile/profile.page";
 import {ComponentsModule} from "../../components/components.module";
+import {ValidateTicketPage} from "./validate-ticket/validate-ticket.page";
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'event',
     component: EventPage
+  },
+  {
+    path: 'validate-ticket',
+    component: ValidateTicketPage
   },
   {
     path: 'event/:eventId',
@@ -44,6 +49,6 @@ const routes: Routes = [
     ComponentsModule
   ],
   exports: [RouterModule],
-  declarations: [HomePage, EventPage, TicketCategoryPage, ProfilePage]
+  declarations: [HomePage, EventPage, TicketCategoryPage, ProfilePage, ValidateTicketPage]
 })
 export class ManagerModule {}
