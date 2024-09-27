@@ -95,6 +95,16 @@ export class SatspassApiService {
     return firstValueFrom(this.http.delete(url));
   }
 
+  getQrCodeInfo(qrCode: string) {
+    const url = `${this.apiUrl}/manager/tickets/qr-code-info`;
+    return firstValueFrom(this.http.post(url, {qrCode})) as Promise<Ticket>;
+  }
+
+  validateTicket(ticketId: string) {
+    const url = `${this.apiUrl}/manager/tickets/${ticketId}/validate`;
+    return firstValueFrom(this.http.post(url, {ticketId})) as Promise<Ticket>;
+  }
+
   getUser() {
     const url = `${this.apiUrl}/user`;
     return firstValueFrom(this.http.get(url)) as Promise<User>;

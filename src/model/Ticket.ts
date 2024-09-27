@@ -1,4 +1,5 @@
 export class Ticket {
+  ticketId: string;
   categoryName: string;
   qrCode: string;
   invoice: string;
@@ -12,7 +13,8 @@ export class Ticket {
   eventLocation: string;
   eventPublicityImageUrl: string;
 
-  constructor(categoryName: string, qrCode: string, invoice: string, ticketStatus: string, eventName: string, eventStartDate: Date, eventEndDate: Date, eventStartTime: Date, eventEndTime: Date, eventDescription: string, eventLocation: string, eventPublicityImageUrl: string) {
+  constructor(ticketId: string, categoryName: string, qrCode: string, invoice: string, ticketStatus: string, eventName: string, eventStartDate: Date, eventEndDate: Date, eventStartTime: Date, eventEndTime: Date, eventDescription: string, eventLocation: string, eventPublicityImageUrl: string) {
+    this.ticketId = ticketId;
     this.categoryName = categoryName;
     this.qrCode = qrCode;
     this.invoice = invoice;

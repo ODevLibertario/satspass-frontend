@@ -112,7 +112,7 @@
 
       <ion-row *ngIf="event && event.ticketCategories && event.ticketCategories.length > 0">
         <ion-col class="center-content">
-          <ion-item [disabled]="event?.eventStatus === 'PUBLISHED'">
+          <ion-item [disabled]="event.eventStatus === 'PUBLISHED'">
             <ion-label position="floating" class="label">Categorias</ion-label>
             <ion-grid style="width: 100%">
               <ion-row class="separator">
@@ -128,7 +128,7 @@
                 <ion-col>
                 </ion-col>
               </ion-row>
-              <ion-row *ngFor="let ticketCategory of event?.ticketCategories">
+              <ion-row *ngFor="let ticketCategory of event.ticketCategories">
                 <ion-col>
                   {{ticketCategory.categoryName}}
                 </ion-col>

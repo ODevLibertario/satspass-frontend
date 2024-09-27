@@ -1,19 +1,38 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Validar Ingresso</ion-title>
+    <ion-title>Validar</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item *ngFor="let barcode of barcodes">
-      <ion-label position="stacked">{{ barcode.format }}</ion-label>
-      <ion-input type="text" [value]="barcode.rawValue"></ion-input>
-    </ion-item>
-  </ion-list>
+
+  <ion-item *ngIf="ticket">
+    <ion-grid>
+      <ion-row>
+        <ion-col><h2>Dados do ingresso:</h2></ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col><h5>Nome do evento:</h5></ion-col>
+        <ion-col><h5>{{ ticket.eventName }}</h5></ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col><h5>Categoria:</h5></ion-col>
+        <ion-col><h5>{{ ticket.categoryName }}</h5></ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col><h5>Data de início:</h5></ion-col>
+        <ion-col><h5>{{ ticket.eventStartDate | date: 'dd/MM/yyyy' }}</h5></ion-col>
+      </ion-row>
+      <ion-row style="display: flex;justify-content: center;">
+        <ion-button color="primary" (click)="validateTicket(ticket.ticketId)">CONFIRMAR</ion-button>
+        <ion-button color="danger" (click)="cancel()">CANCELAR</ion-button>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-    <ion-fab-button (click)="scan()" [disabled]="!isSupported">
+    <ion-fab-button (click)="scan()">
       <ion-icon name="scan"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 </ion-content>
+<tabs [config]="managerTabs"></tabs>
