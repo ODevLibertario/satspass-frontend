@@ -9,9 +9,9 @@
     <ion-grid style="width: 100%;">
       <ion-row>
         <ion-col class="center-content">
-          <ion-item >
+          <ion-item [disabled]="event?.eventStatus === 'PUBLISHED'">
             <ion-label position="floating">Nome do Evento</ion-label>
-            <ion-input type="email" formControlName="name" required [disabled]="event?.eventStatus === 'PUBLISHED'"></ion-input>
+            <ion-input type="text" formControlName="name" required></ion-input>
           </ion-item>
           <ion-text color="danger" *ngIf="eventForm.get('name')?.touched && eventForm.get('name')?.invalid" class="input-error">
             <small *ngIf="eventForm.get('name')?.errors?['required']: false">Nome do Evento é obrigatório.</small>
@@ -84,9 +84,9 @@
       </ion-row>
       <ion-row>
         <ion-col class="center-content">
-          <ion-item>
+          <ion-item [disabled]="event?.eventStatus === 'PUBLISHED'">
             <ion-label position="floating">Descrição</ion-label>
-            <ion-input type="text" formControlName="description" required [disabled]="event?.eventStatus === 'PUBLISHED'"></ion-input>
+            <ion-input type="text" formControlName="description" required></ion-input>
           </ion-item>
           <ion-text color="danger" *ngIf="eventForm.get('description')?.touched && eventForm.get('description')?.invalid" class="input-error">
             <small *ngIf="eventForm.get('description')?.errors?['required']: false">Descrição é obrigatória.</small>
@@ -95,17 +95,17 @@
       </ion-row>
       <ion-row>
         <ion-col class="center-content">
-          <ion-item>
+          <ion-item [disabled]="event?.eventStatus === 'PUBLISHED'">
             <ion-label position="floating">Localização</ion-label>
-            <ion-input type="text" formControlName="location" [disabled]="event?.eventStatus === 'PUBLISHED'"></ion-input>
+            <ion-input type="text" formControlName="location"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col class="center-content">
-          <ion-item>
+          <ion-item [disabled]="event?.eventStatus === 'PUBLISHED'">
             <ion-label position="floating">URL do banner</ion-label>
-            <ion-input type="text" formControlName="publicityImageUrl" [disabled]="event?.eventStatus === 'PUBLISHED'"></ion-input>
+            <ion-input type="text" formControlName="publicityImageUrl"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>
@@ -139,8 +139,8 @@
                   {{ticketCategory.quantity}} sats
                 </ion-col>
                 <ion-col style="display: flex; justify-content: flex-end">
-                  <ion-icon class="icon" name="pencil-sharp" (click)="navigateToTicketCategory(ticketCategory)" ></ion-icon>
-                  <ion-icon class="icon" name="trash-bin-sharp" (click)="deleteTicketCategory(ticketCategory.id)"></ion-icon>
+                  <ion-icon *ngIf="event.eventStatus !== 'PUBLISHED'" class="icon" name="pencil-sharp" (click)="navigateToTicketCategory(ticketCategory)" ></ion-icon>
+                  <ion-icon *ngIf="event.eventStatus !== 'PUBLISHED'" class="icon" name="trash-bin-sharp" (click)="deleteTicketCategory(ticketCategory.id)"></ion-icon>
                 </ion-col>
               </ion-row>
             </ion-grid>
@@ -181,10 +181,10 @@
                   {{ statistics.soldCount }}
                 </ion-col>
                 <ion-col>
-                  {{ statistics.price }}
+                  {{ statistics.price }} sats
                 </ion-col>
                 <ion-col>
-                  {{ statistics.totalValue }}
+                  {{ statistics.totalValue }} sats
                 </ion-col>
               </ion-row>
             </ion-grid>
@@ -194,7 +194,7 @@
     </ion-grid>
 
     <ion-button expand="block"  [disabled]="!eventId || event?.eventStatus === 'PUBLISHED'" (click)="deleteEvent()" class="hidden-on-disable" color="danger">REMOVER EVENTO</ion-button>
-    <ion-button expand="block"  [disabled]="!eventId || event?.eventStatus === 'PUBLISHED'" (click)="navigateToTicketCategory()" class="hidden-on-disable">ADICIONAR CATEGORIA</ion-button>
+    <ion-button expand="block"  [disabled]="!eventId" (click)="navigateToTicketCategory()" class="hidden-on-disable">ADICIONAR CATEGORIA</ion-button>
     <ion-button expand="block"  [disabled]="!eventId || eventForm.invalid || event?.eventStatus === 'PUBLISHED'" (click)="publishEvent()" class="hidden-on-disable">PUBLICAR EVENTO</ion-button>
     <ion-button expand="block"  [disabled]="event?.eventStatus === 'PUBLISHED' || eventForm.invalid || !startDate?.valid || !endDate?.valid || !startTime?.valid || !endTime?.valid" (click)="onSubmit()">{{event ? 'ATUALIZAR' : 'CRIAR'}} EVENTO</ion-button>
   </form>
