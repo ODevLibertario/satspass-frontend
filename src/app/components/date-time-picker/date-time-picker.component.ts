@@ -39,7 +39,7 @@ export class DateTimePickerComponent implements OnInit {
       const parsed = moment(isoDate)
       this.value = {
         day: parsed.date() < 10 ? "0" + parsed.date(): parsed.date(),
-        month: parsed.month() < 10 ? "0" + (parsed.month() + 1): parsed.month() + 1,
+        month: parsed.month() + 1 < 10 ? "0" + (parsed.month() + 1): parsed.month() + 1,
         year: parsed.year(),
         hour: parsed.hour() < 10 ? "0" + parsed.hour(): parsed.hour(),
         minute: parsed.minute()  < 10 ? "0" + parsed.minute(): parsed.minute()

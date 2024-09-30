@@ -71,12 +71,9 @@ export class EventPage implements OnInit {
     if (this.event) {
       this.setEvent(this.event);
     }
-    if(this.event.eventStatus === 'PUBLISHED') {
-      this.ticketStatistics = await this.satspassApiService.getEventStatistics(this.eventId)
-    }
   }
 
-  private setEvent(event: Event): void {
+  private async setEvent(event: Event) {
     this.eventId = event.id;
     this.eventForm.setValue({
       name:event.name,
@@ -88,6 +85,10 @@ export class EventPage implements OnInit {
     this.endDateInitialValue = event.endDate
     this.startTimeInitialValue = event.startTime
     this.endTimeInitialValue = event.endTime
+
+    if(event.eventStatus === 'PUBLISHED') {
+      this.ticketStatistics = await this.satspassApiService.getEventStatistics(this.eventId)
+    }
   }
 
   async onSubmit() {

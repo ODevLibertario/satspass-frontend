@@ -18,9 +18,9 @@
                           [attr.navigation]="!platform.is('mobile') || null"
         >
           <swiper-slide *ngFor="let event of events">
-            <ion-card class="event-card" (click)="navigateToEvent(event)" >
+            <ion-card class="event-card" (click)="navigateToEvent(event)">
               <ion-card-content class="custom-background" [style.backgroundImage]="event.publicityImageUrl ? 'url(' + event.publicityImageUrl + ')' : 'url(/assets/x-default-event-photo.jpg)'">
-                <ion-grid class="text-container">
+                <ion-grid class="text-container" *ngIf="!event.publicityImageUrl">
                   <ion-row>
                     <ion-col class="alignment1">
                       <div class="text-item">{{ event.name }}</div>

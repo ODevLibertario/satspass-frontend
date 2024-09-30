@@ -6,7 +6,7 @@
 
 <ion-content [fullscreen]="true">
   <form>
-  <div class="image-event" [style.backgroundImage]="event!.publicityImageUrl ? 'url(' + event!.publicityImageUrl + ')' : 'url(/assets/x-default-event-photo.jpg)'"></div>
+  <div class="image-event" style="background-repeat: no-repeat;background-size: contain; background-position: center;" [style.backgroundImage]="event!.publicityImageUrl ? 'url(' + event!.publicityImageUrl + ')' : 'url(/assets/x-default-event-photo.jpg)'"></div>
     <ion-text class="teste">
     <p class="border"> {{event?.name}}</p><br>
     <ion-grid>
@@ -26,7 +26,7 @@
     <ion-grid>
       <ion-row>
         <ion-col class="color-colum2">Horários</ion-col>
-        <ion-col class="color-colum">{{ event?.startTime | date: 'HH:hh' }} - {{ event?.endDate | date: 'HH:hh' }}</ion-col>
+        <ion-col class="color-colum">{{ event?.startTime | date: 'HH:mm' }} - {{ event?.endTime | date: 'HH:mm' }}</ion-col>
       </ion-row>
     </ion-grid>
 
