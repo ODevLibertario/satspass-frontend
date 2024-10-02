@@ -70,5 +70,6 @@ testem.log
 Thumbs.db
 
 environment.local.ts
+environment.prod.ts
 
 *.iml

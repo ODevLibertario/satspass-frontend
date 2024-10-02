@@ -11,7 +11,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "ios": "ionic build && npx ionic cap sync ios && npx ionic cap run ios -l --external",
-    "android": "ionic build && npx ionic cap sync android && npx ionic cap run android -l --external"
+    "android": "ionic build --configuration=prod && npx ionic cap sync android && npx ionic cap run android -l --external"
   },
   "private": true,
   "dependencies": {
